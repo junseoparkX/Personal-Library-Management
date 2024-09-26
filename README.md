@@ -1,6 +1,6 @@
 # My Personal Project
 
-## A subtitle
+## Booking system
 
 What will the application do?
 Who will use it?
