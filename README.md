@@ -17,7 +17,7 @@ Personal Library Management project enables users to manage their personal book 
 This project interests me because through the opportunity for making a personal book collection system, I can combines my passion for reading habits and my creative skills for software development. It would be a great change to enhance my java programming skills as well as design and developing user interface. This project is important for me to apply what I have learned from the class and make a tool that I personally find it is useful and needed.   
 
 
-A *bulleted* list:
+**Key Features:**
 - Add New Books to a collection: Add detailed information like title, author, genre, and reading status.
 - View Personal Book Collection: Display a list of all books in the library.
 - Filter and Search Books: Find books by title, author, genre, or tags.
