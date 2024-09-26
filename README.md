@@ -2,6 +2,13 @@
 
 ## A subtitle
 
+What will the application do?
+Who will use it?
+Why is this project of interest to you?
+add a title and subtitle
+apply bold or italic fonts
+insert a bulleted list
+
 A *bulleted* list:
 - item 1
 - item 2
