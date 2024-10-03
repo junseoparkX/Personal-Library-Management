@@ -21,7 +21,7 @@ public class PersonalLibraryApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input for login or registration
+    // EFFECTS: processes user input for signingIn or registration
     private void loginSystem() {
         boolean running = true;
 
@@ -35,9 +35,9 @@ public class PersonalLibraryApp {
             String command = input.next();  // Using next() for input
 
             if (command.equals("u")) {
-                if (login()) {
+                if (signingIn()) {
                     System.out.println("Login successful! Proceeding to the next step...");
-                    running = false; // Exit the loop after successful login
+                    running = false; // Exit the loop after successful signingIn
                 } else {
                     System.out.println(" Please try again. Login failed.");
                 }
@@ -71,15 +71,16 @@ public class PersonalLibraryApp {
         }
     }
 
-    // EFFECTS: handles user login
-    private boolean login() {
+    // EFFECTS: handles user signingIn
+    private boolean signingIn() {
         System.out.print("Enter username: ");
         String username = input.next();
 
         System.out.print("Enter password: ");
         String password = input.next();
 
-        // Delegate the login process to UserManager
+        // Delegate the signingIn process to UserManager
         return userManager.login(username, password);
     }
+    
 }
