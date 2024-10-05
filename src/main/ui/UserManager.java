@@ -45,7 +45,7 @@ public class UserManager {
         return true;  // Registration successful
     }
 
-    // EFFECTS: handles user login and tracks failed login attempts (non-trivial logic with loops and branches)
+    // EFFECTS: handles user login and tracks failed login attempts 
     public boolean login(String username, String password) {
         // Search for the user by username
         for (User user : userAccounts) {
@@ -103,19 +103,6 @@ public class UserManager {
             }
         }
 
-        System.out.println("User not found.");
-        return false;
-    }
-
-    // EFFECTS: Removes a user by username
-    public boolean removeUser(String username) {
-        for (User user : userAccounts) {
-            if (user.getUsername().equals(username)) {
-                userAccounts.remove(user);
-                System.out.println("User " + username + " removed.");
-                return true;
-            }
-        }
         System.out.println("User not found.");
         return false;
     }

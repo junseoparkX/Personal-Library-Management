@@ -22,12 +22,12 @@ public class User {
         return password;
     }
 
-    // Checks if the password is valid (example of simple branching)
+    // Checks if the password is valid 
     public boolean isPasswordValid() {
         return password.length() <= 10;
     }
 
-    // Checks if the username is valid (example of simple branching)
+    // Checks if the username is valid 
     public boolean isUserNameValid() {
         return username.length() <= 10;
     }

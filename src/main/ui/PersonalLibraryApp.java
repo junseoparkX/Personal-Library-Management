@@ -37,7 +37,6 @@ public class PersonalLibraryApp {
             System.out.println("2. Existing user login");
             System.out.println("3. Change password");
             System.out.println("e. Exit");
-
             System.out.print("Please enter your choice: ");
             String command = input.next();
 
@@ -137,7 +136,7 @@ public class PersonalLibraryApp {
     // MODIFIES: this
     // EFFECTS: allows user to add books to the library
     private void addBooks() {
-        input.nextLine(); // Consume leftover newline
+        input.nextLine(); 
         System.out.print("What is the title of the book?: ");
         String title = input.nextLine();
 
@@ -157,7 +156,6 @@ public class PersonalLibraryApp {
         books.add(book); 
 
         System.out.println("The book was added to the Library.");
-        // No need to call runLibrary() here since we're in a loop
     }
 
     // EFFECTS: allows user to search for books based on title, genre, or author

@@ -18,6 +18,7 @@ This project interests me because through the opportunity for making a personal 
 
 
 **Key Features:**
+- There is a registeration and login system which user can make account with username and password and change username. If the user fail to login with 3 attemps, the account blocks. 
 - Add New Books to a collection: Add detailed information like title, author, genre, and reading status.
 - View Personal Book Collection: Display a list of all books in the library.
 - Filter and Search Books: Find books by title, author, genre, or tags.
@@ -27,6 +28,8 @@ This project interests me because through the opportunity for making a personal 
 
 
 ## User Stories
+- As a user, I want to make my private library where I can access it by username and password. 
+- As a user, I want to change my password from my account. 
 - As a user, I want to be able to add a book to my library.
 - As a user, I want to be able to add book in the library with adding deail information: tags, authors and genres. 
 - As a user, I want to be able to view the list of books in the library.
