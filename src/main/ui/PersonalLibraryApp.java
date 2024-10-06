@@ -130,7 +130,7 @@ public class PersonalLibraryApp {
             } else if (command.equals("4")) {
                 searchBooks();
             } else if (command.equals("5")) {
-                //updateReadingStatus();
+                updateReadingStatus();
             } else if (command.equals("e")) {
                 System.out.println("Exiting the application. Goodbye!");
                 running = false; // Exit the loop to end the application
@@ -185,7 +185,7 @@ public class PersonalLibraryApp {
     private void updateReadingStatus(){
         input.nextLine();
         System.out.println("Choose and enter a search term from this option: (title, author, tag): ");
-        String title= input.nextLine();
+        String searchOption = input.nextLine();
 
         List<Book> foundBooks = library.searchBook(searchOption); 
         if (foundBooks.isEmpty()){
@@ -199,7 +199,7 @@ public class PersonalLibraryApp {
 
         // Convert string to Boolean
         Boolean status; 
-        if (statusReading.equal("true")){
+        if (statusReading.equals("true")){
             status = true; 
         }   else if (statusReading.equals("false")){
             status = false; 

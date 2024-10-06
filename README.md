@@ -3,14 +3,14 @@
 ## An Application to Track and Organize Your Personal Book Collection
 
 **What will the application do?**
-Personal Library Management project enables users to manage their personal book collections efficiently. Users can add new books with adding deltailed information such as genres, tags, authors and can track book loan and reading progress. This application also provide function of searching books and author, filter based on different genres and create a wishlists of books that user want to read and safe for later.   
+Personal Library Management project enables users to manage their personal book collections efficiently. Users can add new books with adding deltailed information such as genres, tags, authors and can track book loan and reading progress. This application also provide function of searching books and author, filter based on different author, genre and tags of books that user want to read and safe for later.   
 
 **Who will use it?**
 - It would be usefule for book collectors who wants to make their own personal libraries to collect their favourite book collection. 
 
 - Readers who want to monitor their reading habits and keep wish list. 
 
-- People who want to track their book loan and find a book in the library. 
+- People who want to track their reading status of books and find their favourite books easily in their personal library. 
 
 **Why is this project of interest to you?**
 
@@ -24,7 +24,8 @@ This project interests me because through the opportunity for making a personal 
 - Filter and Search Books: Find books by title, author, genre, or tags.
 - Recommendation for book - Show trending books thesedays with the tag "Trending". (This is already contained in book collection.) 
 - Track Reading Progress: Update the reading status of each book.
-- Manage Wishlist: Create and save a list of books for future reading. It also has function to remove books that are in wishlist. 
+- Remove a book from user's library: Remove books that user mistakely added or want to exclude from their wishlist.  
+
 
 
 ## User Stories
@@ -35,3 +36,4 @@ This project interests me because through the opportunity for making a personal 
 - As a user, I want to be able to view the list of books in the library.
 - As a user, I want to be able to update my reading status. 
 - As a user, I want to be able to search for books by title, author and genres. 
+- As a user, I want to be able to remove books from the library. 

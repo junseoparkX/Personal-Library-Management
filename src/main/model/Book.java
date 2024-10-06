@@ -6,8 +6,7 @@ public class Book {
     private String tag; 
     private String author;
     private Float rating; 
-    private Boolean readingStatus;
-    private Boolean wishToRead; 
+    private Boolean readingStatus; 
 
     // Constructor
     public Book(String title, String author, String genre, String tags, Float rating){
@@ -17,7 +16,6 @@ public class Book {
         this.rating = rating; 
         this.author = author; 
         this.readingStatus = false; 
-        this.wishToRead = false;
     }
 
     public String getTitle() {
@@ -43,17 +41,9 @@ public class Book {
     public Boolean getReadingStatus() {
         return readingStatus;
     }
-    
-    public Boolean getWishToRead() {
-        return wishToRead;
-    }
 
     public void setReadingStatus(Boolean readingStatus) {
         this.readingStatus = readingStatus;
-    }
-
-    public void setWishToRead(Boolean wishToRead) {
-        this.wishToRead = wishToRead;
     }
 
     public void setRating(Float rating) {
@@ -68,11 +58,5 @@ public class Book {
             System.out.println("\"" + title + "\" is now marked as \"Not reading\"" );
         }
 
-    }
-    
-    //toString method to print book details
-    @Override
-    public String toString() {
-        return "Title: " + title + ", Genre: " + genre + ", Rating: " + rating + ", Reading Status: " + readingStatus + ", Wishlist: " + wishToRead;
     }
 }
