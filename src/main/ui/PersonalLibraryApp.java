@@ -1,14 +1,15 @@
 package ui;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import model.Book;
+import model.Library;
 
 public class PersonalLibraryApp {
 
     private UserManager userManager;  // Delegate user management to UserManager
     private Scanner input;
-    private ArrayList<Book> books;
+    private Library library; 
 
     // EFFECTS: runs the application
     public PersonalLibraryApp() {
@@ -19,11 +20,14 @@ public class PersonalLibraryApp {
     // MODIFIES: this
     // EFFECTS: initializes user accounts and scanner
     private void init() {
+        // Initalie the UserManager, Scanner and library
         userManager = new UserManager();  // Initialize the UserManager
         input = new Scanner(System.in);   // Initialize Scanner for user input
-        books = new ArrayList<>();        // Initialize the books list
-        books.add(new Book("Harry Potter", "J.K. Rowling", "Adventure", "Magic", 4.8f));
-        books.add(new Book("qwer", "qwer", "qwer", "qwer", 3.0f));
+        library = new Library(); 
+
+        // Adding recommendation books 
+        library.addBook(new Book("Harry Potter", "J.K. Rowling", "Adventure", "Magic", 4.8f));
+        library.addBook(new Book("qwer", "qwer", "qwer", "qwer", 3.0f));
     }
 
     // MODIFIES: this
@@ -80,7 +84,7 @@ public class PersonalLibraryApp {
 
         // Call UserManager to register the new user
         if (userManager.registerNewUser(username, password)) {
-            System.out.println("Registration successful. You can now log in with your new account.");
+            System.out.println("Registration was successful. You can now log in with your new account.");
         } else {
             System.out.println("Registration failed. Please try again.");
             registration();
@@ -108,9 +112,10 @@ public class PersonalLibraryApp {
         while (running) {
             System.out.println("\nLibrary Menu:");
             System.out.println("1. Add books to library");
-            System.out.println("2. Add books to wishlist");
-            System.out.println("3. See your wishlist");
+            System.out.println("2. Remove a book from library");
+            System.out.println("3. View all books in library");
             System.out.println("4. Search for books");
+            System.out.println("5. Update reading status");
             System.out.println("e. Exit");
 
             System.out.print("Please enter your choice: ");
@@ -119,11 +124,13 @@ public class PersonalLibraryApp {
             if (command.equals("1")) {
                 addBooks(); 
             } else if (command.equals("2")) {
-                // TODO: Implement wishlist functionality
+                removeBook(); 
             } else if (command.equals("3")) {
-                // TODO: Implement wishlist display functionality
+                viewAllBooks();
             } else if (command.equals("4")) {
                 searchBooks();
+            } else if (command.equals("5")) {
+                //updateReadingStatus();
             } else if (command.equals("e")) {
                 System.out.println("Exiting the application. Goodbye!");
                 running = false; // Exit the loop to end the application
@@ -153,82 +160,58 @@ public class PersonalLibraryApp {
         float rating = input.nextFloat();
 
         Book book = new Book(title, author, genre, tag, rating);
-        books.add(book); 
+        library.addBook(book); 
 
         System.out.println("The book was added to the Library.");
     }
 
+    // MODIFIES:this
+    // EFFECTS: it allows user to remove the book from the library 
+    private void removeBook(){
+        input.nextLine();
+        System.out.println("Enter the title of the book to remove:");
+        String bookTitle = input.nextLine();
+
+        boolean removedBook = library.removeBook(bookTitle); 
+        if (!removedBook){
+            System.out.println("Could not remove the book. Check the title of the book again");
+        }
+    }
+
+    private void viewAllBooks(){
+        library.displayAllBooks();
+    }
+
+    private void updateReadingStatus(){
+        input.nextLine();
+        System.out.println("Choose and enter a search term from this option: (title, author, tag): ");
+        String title= input.nextLine();
+
+        List<Book> foundBooks = library.searchBook(searchOption); 
+        if (foundBooks.isEmpty()){
+            System.out.println("No books were found");
+            return; 
+        } 
+        
+        //Book bookToUpdate foundBooks = library.searchBook(searchTitle);
+
+    }
+
     // EFFECTS: allows user to search for books based on title, genre, or author
     private void searchBooks() {
-        // First, print all the books in the library
-        System.out.println("\nBooks in the library:");
-        for (Book book : books) {
-            System.out.println("- " + book.getTitle());
-        }
+        input.nextLine(); 
+        System.out.println("Choose and enter a search term from this option: (title, author, tag): ");
+        String searchOption = input.nextLine(); 
 
-        // Ask the user which field to search by
-        System.out.println("\nSearch by:");
-        System.out.println("1. Title");
-        System.out.println("2. Tag");
-        System.out.println("3. Author");
-        System.out.print("Please enter your choice (1-3): ");
-        int choice = input.nextInt();
-        input.nextLine(); // Consume leftover newline
-
-        // Get the search value from the user
-        String searchValue = "";
-        switch (choice) {
-            case 1:
-                System.out.print("Enter the title to search: ");
-                searchValue = input.nextLine();
-                break;
-            case 2:
-                System.out.print("Enter the tag to search: ");
-                searchValue = input.nextLine();
-                break;
-            case 3:
-                System.out.print("Enter the author to search: ");
-                searchValue = input.nextLine();
-                break;
-            default:
-                System.out.println("Invalid choice.");
-                return;
-        }
-
-        // Search through the books
-        boolean found = false;
-        for (Book book : books) {
-            boolean matches = false;
-            switch (choice) {
-                case 1:
-                    if (book.getTitle().equalsIgnoreCase(searchValue)) {
-                        matches = true;
-                    }
-                    break;
-                case 2:
-                    if (book.getTag().equalsIgnoreCase(searchValue)) {
-                        matches = true;
-                    }
-                    break;
-                case 3:
-                    if (book.getAuthor().equalsIgnoreCase(searchValue)) {
-                        matches = true;
-                    }
-                    break;
+        List<Book> foundBooks = library.searchBook(searchOption); 
+        if (foundBooks.isEmpty()){
+            System.out.println("No books were found");
+        } else{
+            System.out.println("\n Found books: ");
+            for (Book book: foundBooks){
+                System.out.println(book);
             }
-            if (matches) {
-                System.out.println("\nFound book:");
-                System.out.println("Title: " + book.getTitle());
-                System.out.println("Author: " + book.getAuthor());
-                System.out.println("Genre: " + book.getGenre());
-                System.out.println("Tag: " + book.getTag());
-                System.out.println("Rating: " + book.getRating());
-                found = true;
-                break; // Assuming we want to find the first match
-            }
-        }
-        if (!found) {
-            System.out.println("No books found matching your search.");
         }
     }
 }
+

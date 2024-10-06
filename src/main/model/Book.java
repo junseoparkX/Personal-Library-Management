@@ -59,6 +59,16 @@ public class Book {
     public void setRating(Float rating) {
         this.rating = rating;
     }
+
+    public void updateReadingStatus(Boolean status){
+        this.readingStatus = status; 
+        if (!status){
+            System.out.println("\"" + title + "\" is now marked as \"Reading\"");
+        } else{
+            System.out.println("\"" + title + "\" is now marked as \"Not reading\"" );
+        }
+
+    }
     
     //toString method to print book details
     @Override

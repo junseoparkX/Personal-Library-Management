@@ -40,7 +40,13 @@ public class Library {
         return bookList; 
     }
 
-
-
-    
+    public void displayAllBooks(){
+        if(books.isEmpty()){
+            System.out.println("There are no books in the library");
+        }
+        System.out.println("Books in the library:");
+        for (Book book : books){
+            System.out.println(book);
+        }
+    }
 }
