@@ -26,8 +26,8 @@ public class PersonalLibraryApp {
         library = new Library(); 
 
         // Adding recommendation books 
-        library.addBook(new Book("Harry Potter", "J.K. Rowling", "Adventure", "Magic", 4.8f));
-        library.addBook(new Book("qwer", "qwer", "qwer", "qwer", 3.0f));
+        library.addBook(new Book("Harry Potter", "J.K. Rowling", "Adventure", "Trending", 4.8f));
+        library.addBook(new Book("qwer", "qwer", "qwer", "Trending", 3.0f));
     }
 
     // MODIFIES: this
@@ -193,8 +193,22 @@ public class PersonalLibraryApp {
             return; 
         } 
         
-        //Book bookToUpdate foundBooks = library.searchBook(searchTitle);
+        Book bookToUpdate = foundBooks.get(0); 
+        System.out.println("Enter 'true' to mark as 'Reading' or enter 'false' to mark as 'Not Reading'");
+        String statusReading = input.nextLine();
 
+        // Convert string to Boolean
+        Boolean status; 
+        if (statusReading.equal("true")){
+            status = true; 
+        }   else if (statusReading.equals("false")){
+            status = false; 
+
+        } else{
+            System.out.println("Invalod input. Please enter again");
+            return;
+        }
+        bookToUpdate.updateReadingStatus(status);
     }
 
     // EFFECTS: allows user to search for books based on title, genre, or author
