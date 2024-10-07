@@ -44,17 +44,17 @@ public class PersonalLibraryApp {
             System.out.print("Please enter your choice: ");
             String command = input.next();
 
-            if (command.equals("e")){
+            if (command.equals("e")) {
                 System.out.println("Exiting the application. Goodbye!");
                 running = false; // Exit the loop to end the application
-            } else{
+            } else {
                 loginSystem(command, running);
             }
         }
-    }
+    } 
     
 
-    private void loginSystem(String command, Boolean running){
+    private void loginSystem(String command, Boolean running) {
         if (command.equals("1")) {
             registration();
         } else if (command.equals("2")) {
@@ -137,8 +137,8 @@ public class PersonalLibraryApp {
             }
         }
     }
-    
-    private void libraryMenu(){
+
+    private void libraryMenu() {
         System.out.println("\nLibrary Menu:");
         System.out.println("1. Add books to library");
         System.out.println("2. Remove a book from library");
@@ -176,18 +176,18 @@ public class PersonalLibraryApp {
 
     // MODIFIES:this
     // EFFECTS: it allows user to remove the book from the library 
-    private void removeBook(){
+    private void removeBook() {
         input.nextLine();
         System.out.println("Enter the title of the book to remove:");
         String bookTitle = input.nextLine();
 
         boolean removedBook = library.removeBook(bookTitle); 
-        if (!removedBook){
+        if (!removedBook) {
             System.out.println("Could not remove the book. Check the title of the book again");
         }
     }
 
-    private void viewAllBooks(){
+    private void viewAllBooks() {
         library.displayAllBooks();
     }
 
@@ -227,11 +227,11 @@ public class PersonalLibraryApp {
         String searchOption = input.nextLine(); 
 
         List<Book> foundBooks = library.searchBook(searchOption); 
-        if (foundBooks.isEmpty()){
+        if (foundBooks.isEmpty()) {
             System.out.println("No books were found");
         } else {
             System.out.println("\n Found books: ");
-            for (Book book: foundBooks){
+            for (Book book: foundBooks) {
                 System.out.println(book);
             }
         }
