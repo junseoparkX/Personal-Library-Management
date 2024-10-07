@@ -9,7 +9,7 @@ public class Book {
     private Boolean readingStatus; 
 
     // Constructor
-    public Book(String title, String author, String genre, String tags, Float rating){
+    public Book(String title, String author, String genre, String tags, Float rating) {
         this.title = title; 
         this.genre = genre; 
         this.tag = tags; 
@@ -50,12 +50,12 @@ public class Book {
         this.rating = rating;
     }
 
-    public void updateReadingStatus(Boolean status){
+    public void updateReadingStatus(Boolean status) {
         this.readingStatus = status; 
-        if (!status){
+        if (!status) {
             System.out.println("\"" + title + "\" is now marked as \"Reading\"");
-        } else{
-            System.out.println("\"" + title + "\" is now marked as \"Not reading\"" );
+        } else {
+            System.out.println("\"" + title + "\" is now marked as \"Not reading\"");
         }
 
     }
