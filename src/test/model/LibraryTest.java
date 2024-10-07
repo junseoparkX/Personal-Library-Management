@@ -123,7 +123,7 @@ public class LibraryTest {
         library.addBook(book1);
         library.addBook(book2);
         library.displayAllBooks();
-        List<Book> expected = Arrays.asList(book1, book2);
-        assertEquals(expected, library.getBooks());
+        List<Book> bookList = Arrays.asList(book1, book2);
+        assertEquals(bookList, library.getBooks());
     }
 }
