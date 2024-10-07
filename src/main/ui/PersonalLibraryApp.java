@@ -14,7 +14,7 @@ public class PersonalLibraryApp {
     // EFFECTS: runs the application
     public PersonalLibraryApp() {
         init();
-        loginSystem();
+        registerationMenu();
     }
 
     // MODIFIES: this
@@ -32,7 +32,7 @@ public class PersonalLibraryApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input for signing in or registration
-    private void loginSystem() {
+    private void registerationMenu() {
         boolean running = true;
 
         while (running) {
@@ -44,34 +44,40 @@ public class PersonalLibraryApp {
             System.out.print("Please enter your choice: ");
             String command = input.next();
 
-            if (command.equals("1")) {
-                registration();
-            } else if (command.equals("2")) {
-                if (signingIn()) {
-                    System.out.println("Login successful! Proceeding to the library...");
-                    running = false; // Exit the loop after successful sign-in
-                    runLibrary();    // Proceed to library options
-                } else {
-                    System.out.println("Please try again. Login failed.");
-                }
-            } else if (command.equals("3")) {  // Option to change password
-                System.out.print("Enter your username: ");
-                String username = input.next();
-                boolean passwordChanged = userManager.changePassword(username);
-                if (passwordChanged) {
-                    System.out.println("Password changed successfully.");
-                } else {
-                    System.out.println("Failed to change password.");
-                }
-            } else if (command.equals("e")) {
+            if (command.equals("e")){
                 System.out.println("Exiting the application. Goodbye!");
                 running = false; // Exit the loop to end the application
-            } else {
-                System.out.println("Invalid input. Please try again.");
+            } else{
+                loginSystem(command, running);
             }
         }
     }
+    
 
+    private void loginSystem(String command, Boolean running){
+        if (command.equals("1")) {
+            registration();
+        } else if (command.equals("2")) {
+            if (signingIn()) {
+                System.out.println("Login successful! Proceeding to the library...");
+                running = false; // Exit the loop after successful sign-in
+                runLibrary();    // Proceed to library options
+            } else {
+                System.out.println("Please try again. Login failed.");
+            }
+        } else if (command.equals("3")) {  // Option to change password
+            System.out.print("Enter your username: ");
+            String username = input.next();
+            boolean passwordChanged = userManager.changePassword(username);
+            if (passwordChanged) {
+                System.out.println("Password changed successfully.");
+            } else {
+                System.out.println("Failed to change password.");
+            }
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: registers a new user
@@ -109,18 +115,10 @@ public class PersonalLibraryApp {
     private void runLibrary() {
         boolean running = true;
 
+        String command = input.next();
+
         while (running) {
-            System.out.println("\nLibrary Menu:");
-            System.out.println("1. Add books to library");
-            System.out.println("2. Remove a book from library");
-            System.out.println("3. View all books in library");
-            System.out.println("4. Search for books");
-            System.out.println("5. Update reading status");
-            System.out.println("e. Exit");
-
-            System.out.print("Please enter your choice: ");
-            String command = input.next();
-
+            libraryMenu();
             if (command.equals("1")) {
                 addBooks(); 
             } else if (command.equals("2")) {
@@ -138,6 +136,17 @@ public class PersonalLibraryApp {
                 System.out.println("Invalid input. Please try again.");
             }
         }
+    }
+    
+    private void libraryMenu(){
+        System.out.println("\nLibrary Menu:");
+        System.out.println("1. Add books to library");
+        System.out.println("2. Remove a book from library");
+        System.out.println("3. View all books in library");
+        System.out.println("4. Search for books");
+        System.out.println("5. Update reading status");
+        System.out.println("e. Exit");
+        System.out.print("Please enter your choice: ");
     }
 
     // MODIFIES: this
@@ -182,13 +191,13 @@ public class PersonalLibraryApp {
         library.displayAllBooks();
     }
 
-    private void updateReadingStatus(){
+    private void updateReadingStatus() {
         input.nextLine();
         System.out.println("Choose and enter a search term from this option: (title, author, tag): ");
         String searchOption = input.nextLine();
-
+    
         List<Book> foundBooks = library.searchBook(searchOption); 
-        if (foundBooks.isEmpty()){
+        if (foundBooks.isEmpty()) {
             System.out.println("No books were found");
             return; 
         } 
@@ -196,20 +205,20 @@ public class PersonalLibraryApp {
         Book bookToUpdate = foundBooks.get(0); 
         System.out.println("Enter 'true' to mark as 'Reading' or enter 'false' to mark as 'Not Reading'");
         String statusReading = input.nextLine();
-
+    
         // Convert string to Boolean
         Boolean status; 
-        if (statusReading.equals("true")){
+        if (statusReading.equals("true")) {
             status = true; 
-        }   else if (statusReading.equals("false")){
+        } else if (statusReading.equals("false")) {
             status = false; 
-
-        } else{
-            System.out.println("Invalod input. Please enter again");
+        } else {
+            System.out.println("Invalid input. Please enter again");
             return;
         }
         bookToUpdate.updateReadingStatus(status);
     }
+    
 
     // EFFECTS: allows user to search for books based on title, genre, or author
     private void searchBooks() {
@@ -220,7 +229,7 @@ public class PersonalLibraryApp {
         List<Book> foundBooks = library.searchBook(searchOption); 
         if (foundBooks.isEmpty()){
             System.out.println("No books were found");
-        } else{
+        } else {
             System.out.println("\n Found books: ");
             for (Book book: foundBooks){
                 System.out.println(book);

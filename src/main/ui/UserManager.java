@@ -62,7 +62,8 @@ public class UserManager {
                     return true;  // Login successful
                 } else {
                     user.incrementLoginAttempts();  // Increment failed login attempts
-                    System.out.println("Incorrect password. You have " + (3 - user.getLoginAttempts()) + " attempts left.");
+                    System.out.println("Incorrect password. You have " 
+                            + (3 - user.getLoginAttempts()) + " attempts left.");
                     return false;
                 }
             }
