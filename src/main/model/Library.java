@@ -40,6 +40,10 @@ public class Library {
         return bookList; 
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
     public void displayAllBooks(){
         if(books.isEmpty()){
             System.out.println("There are no books in the library");
