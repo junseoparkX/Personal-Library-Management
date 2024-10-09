@@ -14,7 +14,7 @@ Personal Library Management project enables users to manage their personal book 
 
 **Why is this project of interest to you?**
 
-This project interests me because through the opportunity for making a personal book collection system, I can combines my passion for reading habits and my creative skills for software development. It would be a great change to enhance my java programming skills as well as design and developing user interface. This project is important for me to apply what I have learned from the class and make a tool that I personally find it is useful and needed.   
+This project interests me because through the opportunity for making a personal book collection system, I can combines my passion for reading habits and my creative skills for software development.It would be a great change to enhance my java programming skills as well as design and developing user interface.  I also like reading books and want to record and save them. This project is important for me to apply what I have learned from the class and make a tool that I personally find it is useful and needed.
 
 
 **Key Features:**

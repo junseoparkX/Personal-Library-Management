@@ -16,7 +16,6 @@ public class LibraryTest {
 
     @BeforeEach
     public void setUp() {
-        // Initialize the LibraryTest before each test
         library = new Library();
 
         // Create sample Book objects
