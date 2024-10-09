@@ -117,9 +117,9 @@ public class LibraryTest {
         List<Book> expected = Arrays.asList(book1, book2);
         assertEquals(expected, library.getBooks());
     }
+
     @Test
     public void testAddBooks() {
-        // Create books
         Book mazeRunner = new Book("Maze Runner", "James Dashner", "Dystopian", "Adventure", 4.2f);
         Book demian = new Book("Demian", "Hermann Hesse", "Philosophical", "Classic", 4.0f);
         
@@ -133,13 +133,12 @@ public class LibraryTest {
         assertTrue(books.contains(mazeRunner));
         assertTrue(books.contains(demian));
     }
+
     @Test
     public void testDisplayAllBooksWithOneBook() {
-        // Create and add one book to the library
         Book mazeRunner = new Book("Maze Runner", "James Dashner", "Dystopian", "Adventure", 4.2f);
         library.addBook(mazeRunner);
 
-        // Expected output for one book
         List<String> expectedList = List.of(
                 "Books in the library:",
                 "Title: Maze Runner, Author: James Dashner, Genre: Dystopian, Tag: Adventure, Rating: 4.2, Reading Status: Not Reading"
@@ -149,26 +148,28 @@ public class LibraryTest {
         assertEquals(expectedList, actualList);
     }
 
+
     @Test
-    public void testDisplayAllBooks_WithMultipleBooks() {
+    public void testDisplayAllBooksWithMultipleBooks() {
         Book mazeRunner = new Book("Maze Runner", "James Dashner", "Dystopian", "Adventure", 4.2f);
         Book demian = new Book("Demian", "Hermann Hesse", "Philosophical", "Classic", 4.0f);
         demian.setReadingStatus(true);
         library.addBook(mazeRunner);
         library.addBook(demian);
-    
+
         List<String> expectedList = List.of(
                 "Books in the library:",
                 "Title: Maze Runner, Author: James Dashner, Genre: Dystopian, Tag: Adventure, Rating: 4.2, Reading Status: Not Reading",
                 "Title: Demian, Author: Hermann Hesse, Genre: Philosophical, Tag: Classic, Rating: 4.0, Reading Status: Reading"
         );
-    
+
+        // Call the modified displayAllBooks method and compare the output
         List<String> actualList = library.displayAllBooks();
         assertEquals(expectedList, actualList);
     }
+
     @Test
     public void testDisplayAllBooks_EmptyLibrary() {
-        assertTrue(library.getBooks().isEmpty(), "Library should initially be empty");
         List<String> expectedList = List.of("There are no books in the library");
         List<String> actualList = library.displayAllBooks();
         assertEquals(expectedList, actualList);

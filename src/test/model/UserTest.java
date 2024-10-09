@@ -79,4 +79,6 @@ public class UserTest {
         assertFalse(changed);
         assertEquals("1234", user.getPassword());
     }
+
+
 }

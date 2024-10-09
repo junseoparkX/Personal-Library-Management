@@ -190,7 +190,7 @@ public class PersonalLibraryApp {
 
     // EFFECTS: displays all books that are currently in the library
     private void viewAllBooks() {
-        library.displayAllBooks();
+        System.out.println(library.displayAllBooks());
     }
 
     private void updateReadingStatus() {
@@ -234,13 +234,13 @@ public class PersonalLibraryApp {
         } else {
             System.out.println("\n Found books: ");
             for (Book book: foundBooks) {
-                System.out.println("Title: " + book.getTitle() +
-                               ", Author: " + book.getAuthor() +
-                               ", Genre: " + book.getGenre() +
-                               ", Tag: " + book.getTag() +
-                               ", Rating: " + book.getRating() +
-                               ", Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading"));
-        }
+                System.out.println("Title: " + book.getTitle() 
+                               + ", Author: " + book.getAuthor() 
+                               + ", Genre: " + book.getGenre() 
+                               + ", Tag: " + book.getTag() 
+                               + ", Rating: " + book.getRating() 
+                               + ", Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading"));
+            }
         }
     }
 }
