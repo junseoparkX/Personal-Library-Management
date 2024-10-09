@@ -3,35 +3,36 @@ package model;
 public class User {
     private String username;
     private String password;
-    private int loginAttempts;  // Keeps track of failed login attempts
+    private int loginAttempts;  
 
-    // Constructs a user with the given username and password
+    // EFFECTS: initializes a new User with the provided username and password
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         this.loginAttempts = 0;  // Initialize login attempts to 0
     }
 
-    // Returns the username
+    // EFFECTS: returns the username of the user
     public String getUsername() {
         return username;
     }
 
-    // Returns the password
+    // EFFECTS: returns the password of the user
     public String getPassword() {
         return password;
     }
 
-    // Checks if the password is valid 
+    // EFFECTS: returns true if the password length is less than or equal to 10
     public boolean isPasswordValid() {
         return password.length() <= 10;
     }
 
-    // Checks if the username is valid 
+    // EFFECTS: returns true if the username length is less than or equal to 10
     public boolean isUserNameValid() {
         return username.length() <= 10;
     }
 
+   
     // EFFECTS: Increments the login attempt counter
     public void incrementLoginAttempts() {
         loginAttempts++;
@@ -49,10 +50,11 @@ public class User {
 
     // EFFECTS: Checks if the user is locked out after too many failed login attempts
     public boolean isLockedOut() {
-        return loginAttempts >= 3;  // User is locked out after 3 failed attempts
+        return loginAttempts >= 3;  // User is locked out 
     }
 
-    // EFFECTS: Changes the password 
+    // MODIFIES: this
+    // EFFECTS: Changes the password if the old password matches and the new password is valid
     public boolean changePassword(String oldPassword, String newPassword) {
         if (this.password.equals(oldPassword) && newPassword.length() <= 10) {
             this.password = newPassword;

@@ -21,7 +21,7 @@ public class UserManager {
     public boolean registerNewUser(String username, String password) {
         User user = new User(username, password);
 
-        // Validation logic
+        // check the password is valid
         if (!user.isPasswordValid()) {
             System.out.println("Password must be less than 10 characters.");
             return false;
@@ -42,15 +42,15 @@ public class UserManager {
 
         // Add the new user to the list
         userAccounts.add(user);
-        return true;  // Registration successful
+        return true;  
     }
 
-    // EFFECTS: handles user login and tracks failed login attempts 
+    // EFFECTS: tracks failed login attempts and handle user login
     public boolean login(String username, String password) {
         // Search for the user by username
         for (User user : userAccounts) {
             if (user.getUsername().equals(username)) {
-                // Check if the user is locked out
+                // Check whether the user is locked out
                 if (user.isLockedOut()) {
                     System.out.println("Account is locked due to too many failed login attempts.");
                     return false;
@@ -59,9 +59,9 @@ public class UserManager {
                 // Check if the password matches
                 if (user.getPassword().equals(password)) {
                     user.resetLoginAttempts();  // Reset login attempts on successful login
-                    return true;  // Login successful
+                    return true;  // return true if the login was succesful
                 } else {
-                    user.incrementLoginAttempts();  // Increment failed login attempts
+                    user.incrementLoginAttempts();  // Increasefailed login attempts
                     System.out.println("Incorrect password. You have " 
                             + (3 - user.getLoginAttempts()) + " attempts left.");
                     return false;

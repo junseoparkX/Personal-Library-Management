@@ -7,7 +7,7 @@ import model.Library;
 
 public class PersonalLibraryApp {
 
-    private UserManager userManager;  // Delegate user management to UserManager
+    private UserManager userManager; 
     private Scanner input;
     private Library library; 
 
@@ -31,7 +31,7 @@ public class PersonalLibraryApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input for signing in or registration
+    // EFFECTS: processes user input: signing in, password change, registeration, exiting
     private void registerationMenu() {
         boolean running = true;
 
@@ -46,7 +46,7 @@ public class PersonalLibraryApp {
 
             if (command.equals("e")) {
                 System.out.println("Exiting the application. Goodbye!");
-                running = false; // Exit the loop to end the application
+                running = false; // Exit the loop 
             } else {
                 loginSystem(command, running);
             }
@@ -65,7 +65,7 @@ public class PersonalLibraryApp {
             } else {
                 System.out.println("Please try again. Login failed.");
             }
-        } else if (command.equals("3")) {  // Option to change password
+        } else if (command.equals("3")) {  // Option to change user password
             System.out.print("Enter your username: ");
             String username = input.next();
             boolean passwordChanged = userManager.changePassword(username);
@@ -80,7 +80,7 @@ public class PersonalLibraryApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: registers a new user
+    // EFFECTS: registers a new user 
     private void registration() {
         System.out.print("Create a username (less than 10 characters): ");
         String username = input.next();
@@ -106,19 +106,18 @@ public class PersonalLibraryApp {
         System.out.print("Enter password: ");
         String password = input.next();
 
-        // Delegate the sign-in process to UserManager
+        // The sign-in process to UserManager
         return userManager.login(username, password);
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input for library options
+    // EFFECTS: provide user input for library options
     private void runLibrary() {
         boolean running = true;
 
-        String command = input.next();
-
         while (running) {
             libraryMenu();
+            String command = input.next();
             if (command.equals("1")) {
                 addBooks(); 
             } else if (command.equals("2")) {
@@ -138,11 +137,12 @@ public class PersonalLibraryApp {
         }
     }
 
+    // EFFECTS: displays the library menu options to the user
     private void libraryMenu() {
         System.out.println("\nLibrary Menu:");
         System.out.println("1. Add books to library");
         System.out.println("2. Remove a book from library");
-        System.out.println("3. View all books in library");
+        System.out.println("3. View a3ll books in library");
         System.out.println("4. Search for books");
         System.out.println("5. Update reading status");
         System.out.println("e. Exit");
@@ -187,6 +187,7 @@ public class PersonalLibraryApp {
         }
     }
 
+    // EFFECTS: displays all books that are currently in the library
     private void viewAllBooks() {
         library.displayAllBooks();
     }
@@ -223,7 +224,7 @@ public class PersonalLibraryApp {
     // EFFECTS: allows user to search for books based on title, genre, or author
     private void searchBooks() {
         input.nextLine(); 
-        System.out.println("Choose and enter a search term from this option: (title, author, tag): ");
+        System.out.println("Enter anything related from this option: (title, author, tag): ");
         String searchOption = input.nextLine(); 
 
         List<Book> foundBooks = library.searchBook(searchOption); 
@@ -232,8 +233,13 @@ public class PersonalLibraryApp {
         } else {
             System.out.println("\n Found books: ");
             for (Book book: foundBooks) {
-                System.out.println(book);
-            }
+                System.out.println("Title: " + book.getTitle() +
+                               ", Author: " + book.getAuthor() +
+                               ", Genre: " + book.getGenre() +
+                               ", Tag: " + book.getTag() +
+                               ", Rating: " + book.getRating() +
+                               ", Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading"));
+        }
         }
     }
 }

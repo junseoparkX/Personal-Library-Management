@@ -37,7 +37,7 @@ public class BookTest {
     }
 
     @Test
-    void testSetReadingStatus(){
+    void testSetReadingStatus() {
         assertFalse(book.getReadingStatus()); 
 
         // update reading status to true

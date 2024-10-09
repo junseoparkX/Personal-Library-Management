@@ -33,9 +33,6 @@ public class LibraryTest {
         assertTrue(library.getBooks().contains(book3));
     }
 
- 
-
-
     @Test
     public void testRemoveBook() {
         library.addBook(book1);
