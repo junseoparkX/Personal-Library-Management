@@ -52,18 +52,22 @@ public class Library {
     }
 
     // EFFECTS: displays all books in the library or a message if the library is empty
-    public void displayAllBooks() {
+    public List<String> displayAllBooks() {
+        List<String> output = new ArrayList<>();
+    
         if (books.isEmpty()) {
-            System.out.println("There are no books in the library");
+            output.add("There are no books in the library");
+        } else {
+            output.add("Books in the library:");
+            for (Book book : books) {
+                output.add("Title: " + book.getTitle() 
+                        + ", Author: " + book.getAuthor() 
+                        + ", Genre: " + book.getGenre() 
+                        + ", Tag: " + book.getTag() 
+                        + ", Rating: " + book.getRating() 
+                        + ", Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading"));
+            }
         }
-        System.out.println("Books in the library:");
-        for (Book book : books) {
-                System.out.println("Title: " + book.getTitle() +
-                               ", Author: " + book.getAuthor() +
-                               ", Genre: " + book.getGenre() +
-                               ", Tag: " + book.getTag() +
-                               ", Rating: " + book.getRating() +
-                               ", Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading"));
-        }
-    }
+        return output;
+    }   
 }
