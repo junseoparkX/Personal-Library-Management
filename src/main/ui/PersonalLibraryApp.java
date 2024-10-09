@@ -143,7 +143,7 @@ public class PersonalLibraryApp {
         System.out.println("\nLibrary Menu:");
         System.out.println("1. Add books to library");
         System.out.println("2. Remove a book from library");
-        System.out.println("3. View a3ll books in library");
+        System.out.println("3. View all books in library");
         System.out.println("4. Search for books");
         System.out.println("5. Update reading status");
         System.out.println("e. Exit");
