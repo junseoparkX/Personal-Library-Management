@@ -34,6 +34,8 @@ This project interests me because through the opportunity for making a personal 
 - As a user, I want to be able to add a book to my library.
 - As a user, I want to be able to add book in the library with adding deail information: tags, authors and genres. 
 - As a user, I want to be able to view the list of books in the library.
-- As a user, I want to be able to update my reading status. 
+- As a user, AI want to be able to update my reading status. 
 - As a user, I want to be able to search for books by title, author and genres. 
 - As a user, I want to be able to remove books from the library. 
+- As a user, I want to have the option to save my personal library to a file so that I can preserve my data for future use.
+- As a user, I want to have the option to load my personal library from a file so that I can resume my work from where I left off.
