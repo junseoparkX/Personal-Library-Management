@@ -84,7 +84,6 @@ public class Library {
     // EFFECTS: returns books in this library as a JSON array
     private JSONArray booksToJson() {
         JSONArray jsonArray = new JSONArray();
-
         for (Book book : books) {
             jsonArray.put(book.toJson());
         }

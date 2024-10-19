@@ -1,77 +1,86 @@
 package model;
 
+import org.json.JSONObject;
+
 public class Book {  
     private String title;
     private String genre; 
     private String tag; 
     private String author;
-    private Float rating; 
-    private Boolean readingStatus; 
+    private float rating; 
+    private boolean readingStatus; 
 
     // Constructor
     // EFFECTS: Initializes a new Book with the provided title, author, genre, tag, and rating.
     //          Sets readingStatus to false by default.
-    public Book(String title, String author, String genre, String tags, Float rating) {
+    public Book(String title, String author, String genre, String tag, float rating) {
         this.title = title; 
         this.genre = genre; 
-        this.tag = tags; 
+        this.tag = tag; 
         this.rating = rating; 
         this.author = author; 
         this.readingStatus = false; 
     }
 
-    // EFFECTS: Returns the title.
-    public String getTitle() {
-        return title;
+    // Getters
+    public String getTitle() { 
+        return title; 
     }
 
-    // EFFECTS: Returns the author.
-    public String getAuthor() {
-        return author;
+    public String getAuthor() { 
+        return author; 
     }
 
-    // EFFECTS: Returns the genre.
-    public String getGenre() {
-        return genre;
+    public String getGenre() { 
+        return genre; 
     }
 
-    // EFFECTS: Returns the tag.
-    public String getTag() {
+    public String getTag() { 
         return tag;
     }
 
-    // EFFECTS: Returns the rating.
-    public Float getRating() {
-        return rating;
+    public Float getRating() { 
+        return rating; 
     }
 
-    // EFFECTS: Returns true if the book is being read
-    public Boolean getReadingStatus() {
-        return readingStatus;
+    public Boolean getReadingStatus() { 
+        return readingStatus; 
     }
 
-    // MODIFIES:this
-    // EFFECTS: Updates the readingStatus to the provided value.
-    public void setReadingStatus(Boolean readingStatus) {
-        this.readingStatus = readingStatus;
+    // Setters
+    public void setTitle(String title) { 
+        this.title = title; 
     }
 
-    // MODIFIES:this
-    // EFFECTS: Updates the rating to the provided value.
-    public void setRating(Float rating) {
-        this.rating = rating;
+    public void setReadingStatus(boolean readingStatus) { 
+        this.readingStatus = readingStatus; 
+    }
+
+    public void setRating(float rating) { 
+        this.rating = rating; 
     }
 
     // MODIFIES: this
-    // EFFECTS: Sets readingStatus to the provided status and print a status
-    public void updateReadingStatus(Boolean status) {
+    // EFFECTS: Sets readingStatus to the provided status and prints a status
+    public void updateReadingStatus(boolean status) {
         this.readingStatus = status; 
-        if (!status) {
+        if (status) {
             System.out.println("\"" + title + "\" is now marked as \"Reading\"");
         } else {
             System.out.println("\"" + title + "\" is now marked as \"Not reading\"");
         }
-
     }
 
+    // EFFECTS: returns this book as a JSON object
+    public JSONObject toJson() {
+
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("author", author);
+        json.put("genre", genre);
+        json.put("tag", tag);
+        json.put("rating", rating);
+        json.put("readingStatus", readingStatus);
+        return json;
+    }
 }
