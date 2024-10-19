@@ -1,0 +1,34 @@
+{"books": [
+    {
+        "readingStatus": false,
+        "author": "J.K. Rowling",
+        "genre": "Adventure",
+        "rating": 4.8,
+        "tag": "Trending",
+        "title": "Harry Potter"
+    },
+    {
+        "readingStatus": false,
+        "author": "James Dashner",
+        "genre": "Dystopian",
+        "rating": 4.2,
+        "tag": "Adventure",
+        "title": "Maze Runner"
+    },
+    {
+        "readingStatus": false,
+        "author": "qwer",
+        "genre": "qwer",
+        "rating": 3,
+        "tag": "Trending",
+        "title": "qwer"
+    },
+    {
+        "readingStatus": false,
+        "author": "qwer",
+        "genre": "asdfasdf",
+        "rating": 3,
+        "tag": "asdf",
+        "title": "qwer"
+    }
+]}
