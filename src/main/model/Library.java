@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,4 +73,22 @@ public class Library {
         }
         return output;
     }   
+
+    // EFFECTS: returns this library as a JSON object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("books", booksToJson());
+        return json;
+    }
+
+    // EFFECTS: returns books in this library as a JSON array
+    private JSONArray booksToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Book book : books) {
+            jsonArray.put(book.toJson());
+        }
+
+        return jsonArray;
+    }
 }
