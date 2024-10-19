@@ -73,7 +73,6 @@ public class Book {
 
     // EFFECTS: returns this book as a JSON object
     public JSONObject toJson() {
-
         JSONObject json = new JSONObject();
         json.put("title", title);
         json.put("author", author);
