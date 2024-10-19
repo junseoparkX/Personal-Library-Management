@@ -1,0 +1,18 @@
+{"books": [
+    {
+        "readingStatus": false,
+        "author": "Author1",
+        "genre": "Genre1",
+        "rating": 4.5,
+        "tag": "Tag1",
+        "title": "Book1"
+    },
+    {
+        "readingStatus": false,
+        "author": "Author2",
+        "genre": "Genre2",
+        "rating": 3.8,
+        "tag": "Tag2",
+        "title": "Book2"
+    }
+]}

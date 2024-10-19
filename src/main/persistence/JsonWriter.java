@@ -35,6 +35,7 @@ public class JsonWriter {
             writer.close();
         }
     }
+    
     // MODIFIES: this
     // EFFECTS: writes a string to the file
     private void saveToFile(String json) {
