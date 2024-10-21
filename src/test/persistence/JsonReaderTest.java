@@ -2,14 +2,9 @@ package persistence;
 
 import model.Book;
 import model.Library;
-import org.junit.Test;
-import persistence.JsonReader;
-import persistence.JsonWriter;
-
+import org.junit.jupiter.api.Test;
 import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class JsonReaderTest extends JsonTest {
 
@@ -36,8 +31,8 @@ public class JsonReaderTest extends JsonTest {
 
             // Now, read the library back
             JsonReader reader = new JsonReader("./data/testReaderEmptyLibrary.json");
-            library = reader.read();
-            assertEquals(0, library.getBooks().size());
+            Library readLibrary = reader.read();
+            assertEquals(0, readLibrary.getBooks().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -51,6 +46,7 @@ public class JsonReaderTest extends JsonTest {
             Book book1 = new Book("Book1", "Author1", "Genre1", "Tag1", 4.5f);
             book1.setReadingStatus(true);
             Book book2 = new Book("Book2", "Author2", "Genre2", "Tag2", 3.8f);
+            // Assuming default reading status is false
             library.addBook(book1);
             library.addBook(book2);
 
@@ -61,13 +57,12 @@ public class JsonReaderTest extends JsonTest {
 
             // Now, read the library back
             JsonReader reader = new JsonReader("./data/testReaderGeneralLibrary.json");
-            library = reader.read();
-            assertEquals(2, library.getBooks().size());
-            checkBook("Book1", "Author1", "Genre1", "Tag1", 4.5f, true, library.getBooks().get(0));
-            checkBook("Book2", "Author2", "Genre2", "Tag2", 3.8f, false, library.getBooks().get(1));
+            Library readLibrary = reader.read();
+            assertEquals(2, readLibrary.getBooks().size());
+            checkBook("Book1", "Author1", "Genre1", "Tag1", 4.5f, true, readLibrary.getBooks().get(0));
+            checkBook("Book2", "Author2", "Genre2", "Tag2", 3.8f, false, readLibrary.getBooks().get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
 }
-
