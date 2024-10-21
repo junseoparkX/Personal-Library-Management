@@ -1,6 +1,6 @@
 {"books": [
     {
-        "readingStatus": true,
+        "readingStatus": false,
         "author": "Author1",
         "genre": "Genre1",
         "rating": 4.5,

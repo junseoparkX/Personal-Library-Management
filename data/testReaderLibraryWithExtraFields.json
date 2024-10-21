@@ -1,0 +1,1 @@
+{ "books": [ { "title": "BookExtra", "author": "AuthorExtra", "genre": "GenreExtra", "tag": "TagExtra", "rating": 3.0, "readingStatus": true, "extraField": "ExtraValue" } ] }

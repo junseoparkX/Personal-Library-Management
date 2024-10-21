@@ -43,7 +43,7 @@ public class JsonReader {
         }
     }
 
-    // EFFECTS: parses a book from a JSON object and returns it
+    // EFFECTS: parses a book from a JSON object and returns thge book
     private Book parseBook(JSONObject jsonObject) {
         String title = jsonObject.getString("title");
         String author = jsonObject.getString("author");

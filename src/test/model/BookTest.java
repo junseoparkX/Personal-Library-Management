@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.json.JSONObject;
+
 public class BookTest {
     
     private Book book;
@@ -57,4 +59,39 @@ public class BookTest {
         book.setRating(4.7f);
         assertEquals(4.7f, book.getRating());
     }
+
+ @Test
+    void testToJson() {
+        JSONObject json = book.toJson();
+
+        assertEquals("The Selfish Gene", json.getString("title"));
+        assertEquals("Richard Dawkins", json.getString("author"));
+        assertEquals("Science", json.getString("genre"));
+        assertEquals("Evolution", json.getString("tag"));
+        assertEquals(4.9f, (float) json.getDouble("rating"), 0.001);
+        assertFalse(json.getBoolean("readingStatus"));
+
+        // Update reading status and check JSON again
+        book.updateReadingStatus(true);
+        json = book.toJson();
+        assertTrue(json.getBoolean("readingStatus"));
+    }
+
+    @Test
+    void testSetTitle() {
+        assertEquals("The Selfish Gene", book.getTitle());
+
+        // Update the title
+        book.setTitle("The Extended Phenotype");
+        assertEquals("The Extended Phenotype", book.getTitle());
+
+        // Update the title to an empty string
+        book.setTitle("");
+        assertEquals("", book.getTitle());
+
+        // Update the title to null
+        book.setTitle(null);
+        assertNull(book.getTitle());
+    }
+
 }
