@@ -117,8 +117,6 @@ public class JsonWriterTest extends JsonTest {
 
             library = reader.read();
             assertEquals(numBooks, library.getBooks().size(), "Library should have " + numBooks + " books");
-
-            // Optionally, verify a few random books
             checkBook("Book1", "Author1", "Genre1", "Tag1", 1.5f, false, library.getBooks().get(0));
             checkBook("Book500", "Author500", "Genre500", "Tag500", 0.5f, false, library.getBooks().get(499));
             checkBook("Book1000", "Author1000", "Genre1000", "Tag1000", 0.5f, false, library.getBooks().get(999));
