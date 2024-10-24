@@ -14,21 +14,5 @@
         "rating": 4.2,
         "tag": "Adventure",
         "title": "Maze Runner"
-    },
-    {
-        "readingStatus": false,
-        "author": "qwer",
-        "genre": "qwer",
-        "rating": 3,
-        "tag": "Trending",
-        "title": "qwer"
-    },
-    {
-        "readingStatus": false,
-        "author": "qwer",
-        "genre": "asdfasdf",
-        "rating": 3,
-        "tag": "asdf",
-        "title": "qwer"
     }
 ]}

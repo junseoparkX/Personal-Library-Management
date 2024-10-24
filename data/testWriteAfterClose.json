@@ -1,8 +1,0 @@
-{"books": [{
-    "readingStatus": false,
-    "author": "AuthorAC",
-    "genre": "GenreAC",
-    "rating": 5,
-    "tag": "TagAC",
-    "title": "BookAfterClose"
-}]}

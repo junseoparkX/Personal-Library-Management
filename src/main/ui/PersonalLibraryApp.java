@@ -40,6 +40,8 @@ public class PersonalLibraryApp {
         library.addBook(new Book("Harry Potter", "J.K. Rowling", "Adventure", "Trending", 4.8f));
         library.addBook(new Book("Maze Runner", "James Dashner", "Dystopian", "Adventure", 4.2f));
         library.addBook(new Book("qwer", "qwer", "qwer", "Trending", 3.0f));
+        library.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", "Fiction", "Trending", 4.4f));
+        library.addBook(new Book("To Kill a Mockingbird", "Harper Lee", "Fiction", "Classic", 4.8f));   
     }
 
     // MODIFIES: this
