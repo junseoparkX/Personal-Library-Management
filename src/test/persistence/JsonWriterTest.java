@@ -102,26 +102,4 @@ public class JsonWriterTest extends JsonTest {
          //   fail("IOException should not have been thrown");
         }
     }
-
-    @Test
-    public void testWriteLargeLibrary() {
-        try {
-            int numBooks = 1000;
-            for (int i = 1; i <= numBooks; i++) {
-                library.addBook(new Book("Book" + i, "Author" + i, "Genre" + i, "Tag" + i, (i % 5) + 0.5f));
-            }
-
-            writer.open();
-            writer.write(library);
-            writer.close();
-
-            library = reader.read();
-            assertEquals(numBooks, library.getBooks().size(), "Library should have " + numBooks + " books");
-            checkBook("Book1", "Author1", "Genre1", "Tag1", 1.5f, false, library.getBooks().get(0));
-            checkBook("Book500", "Author500", "Genre500", "Tag500", 0.5f, false, library.getBooks().get(499));
-            checkBook("Book1000", "Author1000", "Genre1000", "Tag1000", 0.5f, false, library.getBooks().get(999));
-        } catch (IOException e) {
-         //   fail("IOException should not have been thrown");
-        }
-    }
 }

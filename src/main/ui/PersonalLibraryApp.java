@@ -43,7 +43,7 @@ public class PersonalLibraryApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input: signing in, password change, registration, exiting
+    // EFFECTS: show the registeration to user and if the user pressed e, exit the menu
     private void registrationMenu() {
         boolean running = true;
 
@@ -65,6 +65,9 @@ public class PersonalLibraryApp {
         }
     }
 
+
+    // MODIFIES: this
+    // EFFECTS: processes user input: signing in, password change, registration, exiting
     private void loginSystem(String command) {
         if (command.equals("1")) {
             registration();

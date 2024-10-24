@@ -21,14 +21,8 @@ public class JsonReaderTest extends JsonTest {
         library = new Library();
         writer = new JsonWriter("./data/testWriterEmptyLibrary.json");
         reader = new JsonReader("./data/testWriterEmptyLibrary.json");
-
     }
 
-
-    /**
-     * Test reading an empty Library from a JSON file.
-     * Expects the Library to have zero books.
-     */
     @Test
     public void testReaderEmptyLibrary() {
         try {
