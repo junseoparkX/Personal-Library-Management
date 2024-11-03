@@ -14,5 +14,29 @@
         "rating": 4.2,
         "tag": "Adventure",
         "title": "Maze Runner"
+    },
+    {
+        "readingStatus": false,
+        "author": "qwer",
+        "genre": "qwer",
+        "rating": 3,
+        "tag": "Trending",
+        "title": "qwer"
+    },
+    {
+        "readingStatus": false,
+        "author": "F. Scott Fitzgerald",
+        "genre": "Fiction",
+        "rating": 4.4,
+        "tag": "Trending",
+        "title": "The Great Gatsby"
+    },
+    {
+        "readingStatus": false,
+        "author": "Harper Lee",
+        "genre": "Fiction",
+        "rating": 4.8,
+        "tag": "Classic",
+        "title": "To Kill a Mockingbird"
     }
 ]}

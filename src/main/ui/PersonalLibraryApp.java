@@ -196,6 +196,7 @@ public class PersonalLibraryApp {
 
         Book book = new Book(title, author, genre, tag, rating);
         library.addBook(book);
+        System.out.println("Book was added to the library: " + book.getTitle());
 
         System.out.println("The book was added to the Library.");
     }
@@ -209,7 +210,10 @@ public class PersonalLibraryApp {
 
         boolean removedBook = library.removeBook(bookTitle);
         if (!removedBook) {
+            System.out.println("Book \"" + bookTitle + "\" was not found");
             System.out.println("Could not remove the book. Check the title of the book again.");
+        } else  {
+            System.out.println("Book removed: " + bookTitle);
         }
     }
 
@@ -242,8 +246,10 @@ public class PersonalLibraryApp {
         Boolean status;
         if (statusReading.equalsIgnoreCase("true")) {
             status = true;
+            System.out.println("It is now marked as \"Reading\"");
         } else if (statusReading.equalsIgnoreCase("false")) {
             status = false;
+            System.out.println("It is now marked as \"Not reading\"");
         } else {
             System.out.println("Invalid input. Please enter 'true' or 'false'.");
             return;

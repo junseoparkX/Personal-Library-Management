@@ -15,10 +15,9 @@ public class Library {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a book to the library and prints a confirmation message
+    // EFFECTS: adds a book to the library
     public void addBook(Book book) {
         books.add(book);
-        System.out.println("Book was added to the library: " + book.getTitle());
     }
 
     // MODIFIES: this
@@ -28,11 +27,9 @@ public class Library {
             Book book = books.get(i);
             if (book.getTitle().equals(title)) {
                 books.remove(i);
-                System.out.println("Book removed: " + title);
                 return true; 
             }
         }
-        System.out.println("Book \"" + title + "\" was not found");
         return false; 
     }
 

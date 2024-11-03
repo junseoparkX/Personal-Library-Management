@@ -61,14 +61,9 @@ public class Book {
     }
 
     // MODIFIES: this
-    // EFFECTS: Sets readingStatus to the provided status and prints a status
+    // EFFECTS: Sets readingStatus to the provided status 
     public void updateReadingStatus(boolean status) {
         this.readingStatus = status; 
-        if (status) {
-            System.out.println("\"" + title + "\" is now marked as \"Reading\"");
-        } else {
-            System.out.println("\"" + title + "\" is now marked as \"Not reading\"");
-        }
     }
 
     // EFFECTS: returns this book as a JSON object
