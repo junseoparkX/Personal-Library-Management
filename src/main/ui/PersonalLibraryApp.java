@@ -9,6 +9,13 @@ import model.Library;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+/**
+ * The main user interface for the Personal Library Management System.
+ * Provides menu options for user registration, login, password management, and library operations.
+ * Library operations include adding, removing, viewing, and searching books, as well as updating
+ * reading status and saving/loading the library data to/from a JSON file.
+ * Uses `UserManager` for user account management and `JsonReader`/`JsonWriter` for file handling.
+ */
 public class PersonalLibraryApp {
 
     private static final String JSON_STORE = "./data/library.json";

@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * Represents a user with a username, password, and a counter for login attempts.
+ * Provides methods to validate the username and password length, track and reset login attempts,
+ * check if the user is locked out due to too many failed login attempts, and change the password
+ * if certain conditions are met.
+ */
 public class User {
     private String username;
     private String password;

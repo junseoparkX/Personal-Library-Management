@@ -2,6 +2,12 @@ package model;
 
 import org.json.JSONObject;
 
+/**
+ * Represents a book with attributes such as title, author, genre, tag, and rating.
+ * It also tracks the reading status of the book, allowing users to mark it as 
+ * "Reading" or "Not reading". Provides methods for accessing and updating these 
+ * attributes and for converting the book's information into JSON format.
+ */
 public class Book {  
     private String title;
     private String genre; 

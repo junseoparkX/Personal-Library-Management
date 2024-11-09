@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import model.User;
 
+/**
+ * Manages user accounts within the Personal Library Management System.
+ * Supports user registration, login with password validation and lockout after
+ * multiple failed attempts, and password change functionality.
+ * Ensures unique usernames and enforces password and username length constraints.
+ * Uses a list to store user accounts and a scanner for console input during password change operations.
+ */
 public class UserManager {
     private ArrayList<User> userAccounts;
     private Scanner input;

@@ -6,6 +6,12 @@ import org.json.JSONObject;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+/**
+ * A writer that writes library data to a JSON file.
+ * Allows saving a `Library` object and its book collection to a specified destination file in JSON format.
+ * Provides methods to open and close the file writer, and to write the JSON representation
+ * of the library to the file. Throws a FileNotFoundException if the file cannot be opened for writing.
+ */
 public class JsonWriter {
     private String destination;
     private PrintWriter writer;

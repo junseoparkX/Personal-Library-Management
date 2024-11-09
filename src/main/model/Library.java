@@ -6,6 +6,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a library that manages a collection of books. 
+ * Provides methods to add, remove, search, and display books in the library.
+ * Additionally, it supports converting the library's book collection to a JSON format.
+ * Each book in the library is represented by the Book class.
+ */
 public class Library {
     private ArrayList<Book> books; 
 

@@ -9,6 +9,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * A reader that reads library data from a JSON file.
+ * Allows for loading a `Library` object with its books from a specified JSON source file.
+ * It parses the JSON data to create `Book` objects and add them to the library.
+ * Throws an IOException if there are issues reading the data from the file.
+ */
 public class JsonReader {
     private String source;
 
