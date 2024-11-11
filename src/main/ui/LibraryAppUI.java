@@ -19,6 +19,7 @@ public class LibraryAppUI extends JFrame {
     private BufferedImage backgroundImage;
     private CardLayout cardLayout;
     private Library library;
+    private ViewBookList viewBookListPanel; 
 
     /**
      * Constructs a new LibraryAppUI, setting up the main window and loading
@@ -50,8 +51,11 @@ public class LibraryAppUI extends JFrame {
         JPanel menuPanel = createMenuPanel();
         mainPanel.add(menuPanel, "MenuPanel");
 
-        // Add the AddBookUI panel to the CardLayout
-        mainPanel.add(new AddBookUI(library, this), "AddBookUI");
+        // In LibraryAppUI, when initializing AddBookUI:
+        viewBookListPanel = new ViewBookList(library, this);
+        mainPanel.add(viewBookListPanel, "ViewBookListUI");
+        mainPanel.add(new AddBookUI(library, this, viewBookListPanel), "AddBookUI");
+
 
         // Add the main panel to the frame
         add(mainPanel);

@@ -20,17 +20,19 @@ public class AddBookUI extends JPanel {
     private JButton saveButton;
     private JButton backButton;
     private Library library; // Reference to the Library object
+    private ViewBookList viewBookList; // Reference to ViewBookList for refreshing display
 
     /**
      * Constructs a new AddBookUI panel with fields to input book details and buttons 
      * to save the book or return to the main menu.
      *
-     * Requires: library and parent must be non-null.
+     * Requires: library, parent, and viewBookList must be non-null.
      * Modifies: this
      * Effects: Initializes the UI elements, sets up layout and action listeners.
      */
-    public AddBookUI(Library library, LibraryAppUI parent) {
+    public AddBookUI(Library library, LibraryAppUI parent, ViewBookList viewBookList) {
         this.library = library;
+        this.viewBookList = viewBookList;
         setLayout(new BorderLayout());
 
         // Title label
@@ -98,6 +100,7 @@ public class AddBookUI extends JPanel {
      * Effects: Creates a new Book instance and adds it to the library if input is valid.
      *          Displays a success or error message accordingly, and clears input fields if successful.
      */
+        // In AddBookUI
     private void addBookToLibrary() {
         String title = titleField.getText().trim();
         String author = authorField.getText().trim();
@@ -105,7 +108,6 @@ public class AddBookUI extends JPanel {
         String tag = tagField.getText().trim();
         float rating;
 
-        // Validate rating input
         try {
             rating = Float.parseFloat(ratingField.getText().trim());
             if (rating < 0 || rating > 5) {
@@ -116,20 +118,19 @@ public class AddBookUI extends JPanel {
             return;
         }
 
-        // Check for empty fields
         if (title.isEmpty() || author.isEmpty() || genre.isEmpty() || tag.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Incomplete Data", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Create the Book object and add it to the library
         Book book = new Book(title, author, genre, tag, rating);
         library.addBook(book);
 
-        // Confirmation message
+        // Refresh the book list in ViewBookList after adding a new book
+        viewBookList.updateBookList();
+
         JOptionPane.showMessageDialog(this, "Book added to the library: " + book.getTitle(), "Success", JOptionPane.INFORMATION_MESSAGE);
 
-        // Clear the fields after adding the book
         titleField.setText("");
         authorField.setText("");
         genreField.setText("");
@@ -137,5 +138,3 @@ public class AddBookUI extends JPanel {
         ratingField.setText("");
     }
 }
-
-
