@@ -7,6 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import model.Library;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 /**
  * LibraryAppUI represents the main user interface for the PersonalLibraryApp. 
@@ -15,11 +17,14 @@ import model.Library;
  * saving and loading the library data.
  */
 public class LibraryAppUI extends JFrame {
+    private static final String JSON_STORE = "./data/library.json"; // Path to the JSON file
     private JPanel mainPanel;
     private BufferedImage backgroundImage;
     private CardLayout cardLayout;
     private Library library;
-    private ViewBookList viewBookListPanel; 
+    private ViewBookList viewBookListPanel;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     /**
      * Constructs a new LibraryAppUI, setting up the main window and loading
@@ -35,6 +40,8 @@ public class LibraryAppUI extends JFrame {
         setSize(600, 600);
 
         library = new Library();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         // Load the background image from src/main/image/library.png
         try {
@@ -51,22 +58,19 @@ public class LibraryAppUI extends JFrame {
         JPanel menuPanel = createMenuPanel();
         mainPanel.add(menuPanel, "MenuPanel");
 
-        // In LibraryAppUI, when initializing AddBookUI:
+        // Initialize and add various UI panels for different functionalities
         viewBookListPanel = new ViewBookList(library, this);
         mainPanel.add(viewBookListPanel, "ViewBookListUI");
         mainPanel.add(new AddBookUI(library, this, viewBookListPanel), "AddBookUI");
 
-        // In LibraryAppUI constructor or setup method
         RemoveBook removeBookPanel = new RemoveBook(library, this, viewBookListPanel);
         mainPanel.add(removeBookPanel, "RemoveBook");
-        
-         // In LibraryAppUI constructor or setup method:
+
         SearchBook searchBookPanel = new SearchBook(library, this);
-        mainPanel.add(searchBookPanel, "SearchBook"); 
+        mainPanel.add(searchBookPanel, "SearchBook");
 
         UpdateReadingStatus updateReadingStatusPanel = new UpdateReadingStatus(library, this, viewBookListPanel);
         mainPanel.add(updateReadingStatusPanel, "UpdateReadingStatus");
-
 
         // Add the main panel to the frame
         add(mainPanel);
@@ -119,8 +123,15 @@ public class LibraryAppUI extends JFrame {
         bottomButtonPanel.add(createButton("Remove Book", "RemoveBook"));
         bottomButtonPanel.add(createButton("Update Reading Status", "UpdateReadingStatus"));
         bottomButtonPanel.add(createButton("Search Books", "SearchBook"));
-        bottomButtonPanel.add(createButton("Load Library", "LoadLibraryUI"));
-        bottomButtonPanel.add(createButton("Save Library", "SaveLibraryUI"));
+
+        // Buttons for saving and loading the library
+        JButton loadButton = new JButton("Load Library");
+        loadButton.addActionListener(e -> loadLibrary());
+        bottomButtonPanel.add(loadButton);
+
+        JButton saveButton = new JButton("Save Library");
+        saveButton.addActionListener(e -> saveLibrary());
+        bottomButtonPanel.add(saveButton);
 
         // Add bottom button panel below the wide buttons
         contentPanel.add(bottomButtonPanel);
@@ -145,6 +156,30 @@ public class LibraryAppUI extends JFrame {
         button.addActionListener(e -> showPanel(panelName));
         return button;
     }
+
+    /**
+     * Saves the current library data to a JSON file.
+     * 
+     * Requires: JSON_STORE must be a valid file path and jsonWriter must be initialized.
+     * Modifies: JSON_STORE file
+     * Effects: Writes the library data to JSON_STORE; displays success or error message.
+     */
+    private void saveLibrary() {
+
+    }
+
+    /**
+     * Loads the library data from a JSON file.
+     * 
+     * Requires: JSON_STORE must be a valid file path and jsonReader must be initialized.
+     * Modifies: this, library, viewBookListPanel
+     * Effects: Reads library data from JSON_STORE; displays success or error message,
+     *          and refreshes the ViewBookList panel to show loaded data.
+     */
+    private void loadLibrary() {
+
+    }
+
 
     /**
      * Method to switch panels in the main window.

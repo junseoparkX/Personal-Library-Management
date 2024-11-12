@@ -38,5 +38,13 @@
         "rating": 4.8,
         "tag": "Classic",
         "title": "To Kill a Mockingbird"
+    },
+    {
+        "readingStatus": false,
+        "author": "3",
+        "genre": "3",
+        "rating": 3,
+        "tag": "3",
+        "title": "3"
     }
 ]}

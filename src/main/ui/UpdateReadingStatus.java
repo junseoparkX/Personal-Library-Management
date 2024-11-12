@@ -22,10 +22,6 @@ public class UpdateReadingStatus extends JPanel {
     /**
      * Constructs a new UpdateReadingStatus panel to search for books by title and update their reading status.
      *
-     * @param library the Library object containing the books to update
-     * @param parentFrame the parent LibraryAppUI frame to navigate back to the main menu
-     * @param viewBookList a reference to ViewBookList to refresh the book list display after updates
-     *
      * Requires: library, parentFrame, and viewBookList must be non-null.
      * Modifies: this
      * Effects: Initializes the UI elements, sets up layout and action listeners.
@@ -80,8 +76,6 @@ public class UpdateReadingStatus extends JPanel {
     /**
      * Searches for a book by title in the library and displays its details in the result area.
      * If the book is found, prompts the user to toggle the reading status.
-     * 
-     * @param title the title of the book to search for
      * 
      * Requires: title is a non-null string.
      * Modifies: library, resultArea, viewBookList
