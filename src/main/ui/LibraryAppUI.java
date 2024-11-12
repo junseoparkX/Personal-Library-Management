@@ -64,6 +64,10 @@ public class LibraryAppUI extends JFrame {
         SearchBook searchBookPanel = new SearchBook(library, this);
         mainPanel.add(searchBookPanel, "SearchBook"); 
 
+        UpdateReadingStatus updateReadingStatusPanel = new UpdateReadingStatus(library, this, viewBookListPanel);
+        mainPanel.add(updateReadingStatusPanel, "UpdateReadingStatus");
+
+
         // Add the main panel to the frame
         add(mainPanel);
 
@@ -113,7 +117,7 @@ public class LibraryAppUI extends JFrame {
 
         bottomButtonPanel.add(createButton("Add Book", "AddBookUI"));
         bottomButtonPanel.add(createButton("Remove Book", "RemoveBook"));
-        bottomButtonPanel.add(createButton("Update Reading Status", "UpdateReadingStatusUI"));
+        bottomButtonPanel.add(createButton("Update Reading Status", "UpdateReadingStatus"));
         bottomButtonPanel.add(createButton("Search Books", "SearchBook"));
         bottomButtonPanel.add(createButton("Load Library", "LoadLibraryUI"));
         bottomButtonPanel.add(createButton("Save Library", "SaveLibraryUI"));
