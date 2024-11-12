@@ -3,7 +3,9 @@ package ui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.*;
+import model.Book;
 import model.Library;
 
 /**
@@ -20,12 +22,47 @@ public class UpdateReadingStatus extends JPanel {
     /**
      * Constructs a new UpdateReadingStatus panel to search for books by title and update their reading status.
      *
+     * @param library the Library object containing the books to update
+     * @param parentFrame the parent LibraryAppUI frame to navigate back to the main menu
+     * @param viewBookList a reference to ViewBookList to refresh the book list display after updates
+     *
      * Requires: library, parentFrame, and viewBookList must be non-null.
      * Modifies: this
      * Effects: Initializes the UI elements, sets up layout and action listeners.
      */
     public UpdateReadingStatus(Library library, LibraryAppUI parentFrame, ViewBookList viewBookList) {
+        this.library = library;
+        this.parentFrame = parentFrame;
+        this.viewBookList = viewBookList;
+        setLayout(new BorderLayout());
 
+        // Title label for the view
+        JLabel titleLabel = new JLabel("Update Reading Status", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        add(titleLabel, BorderLayout.NORTH);
+
+        // Search bar at the top
+        JPanel searchPanel = new JPanel(new BorderLayout());
+        searchField = new JTextField();
+        searchField.setFont(new Font("Arial", Font.PLAIN, 16));
+        searchField.setBorder(BorderFactory.createTitledBorder("Enter Book Title to Update Status"));
+        searchField.addActionListener(new SearchActionListener());
+        searchPanel.add(searchField, BorderLayout.CENTER);
+
+        add(searchPanel, BorderLayout.NORTH);
+
+        // Text area to display the search result
+        resultArea = new JTextArea();
+        resultArea.setEditable(false);
+        resultArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        resultArea.setBorder(BorderFactory.createTitledBorder("Search Result"));
+        JScrollPane scrollPane = new JScrollPane(resultArea);
+        add(scrollPane, BorderLayout.CENTER);
+
+        // Back button to return to the main menu
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> parentFrame.showPanel("MenuPanel"));
+        add(backButton, BorderLayout.SOUTH);
     }
 
     /**
@@ -33,12 +70,18 @@ public class UpdateReadingStatus extends JPanel {
      * the searchAndToggleReadingStatus method is called with the input title.
      */
     private class SearchActionListener implements ActionListener {
- 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String title = searchField.getText().trim();
+            searchAndToggleReadingStatus(title);
+        }
     }
 
     /**
      * Searches for a book by title in the library and displays its details in the result area.
      * If the book is found, prompts the user to toggle the reading status.
+     * 
+     * @param title the title of the book to search for
      * 
      * Requires: title is a non-null string.
      * Modifies: library, resultArea, viewBookList
@@ -49,6 +92,45 @@ public class UpdateReadingStatus extends JPanel {
      *          displays a "no book found" message.
      */
     private void searchAndToggleReadingStatus(String title) {
+        resultArea.setText(""); // Clear previous result
+        List<Book> books = library.getBooks();
 
+        boolean found = false;
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                // Display the book details
+                resultArea.append("Title: " + book.getTitle() + "\n");
+                resultArea.append("Author: " + book.getAuthor() + "\n");
+                resultArea.append("Genre: " + book.getGenre() + "\n");
+                resultArea.append("Tag: " + book.getTag() + "\n");
+                resultArea.append("Rating: " + book.getRating() + "\n");
+                resultArea.append("Current Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading") + "\n\n");
+
+                // Ask for confirmation to toggle the reading status
+                int choice = JOptionPane.showConfirmDialog(
+                        this,
+                        "Would you like to change the reading status?",
+                        "Confirm Status Change",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (choice == JOptionPane.YES_OPTION) {
+                    // Toggle the reading status
+                    book.setReadingStatus(!book.getReadingStatus());
+                    JOptionPane.showMessageDialog(this, "Reading status updated successfully.");
+                    viewBookList.updateBookList(); // Refresh ViewBookList to reflect the update
+                } else {
+                    JOptionPane.showMessageDialog(this, "Reading status not changed.");
+                }
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            resultArea.append("No book found with the title \"" + title + "\"");
+        }
     }
 }
+
+
