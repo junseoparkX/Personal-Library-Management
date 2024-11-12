@@ -3,6 +3,7 @@ package ui;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -156,7 +157,7 @@ public class LibraryAppUI extends JFrame {
         button.addActionListener(e -> showPanel(panelName));
         return button;
     }
-
+        
     /**
      * Saves the current library data to a JSON file.
      * 
@@ -165,7 +166,14 @@ public class LibraryAppUI extends JFrame {
      * Effects: Writes the library data to JSON_STORE; displays success or error message.
      */
     private void saveLibrary() {
-
+        try {
+            jsonWriter.open();
+            jsonWriter.write(library);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(this, "Library saved successfully to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Error: Unable to write to file: " + JSON_STORE, "Save Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -177,7 +185,16 @@ public class LibraryAppUI extends JFrame {
      *          and refreshes the ViewBookList panel to show loaded data.
      */
     private void loadLibrary() {
+        try {
+            Library loadedLibrary = jsonReader.read();
+            library.getBooks().clear(); // Clear current library
+            library.getBooks().addAll(loadedLibrary.getBooks()); // Add loaded books to existing library
 
+            viewBookListPanel.updateBookList(); // Refresh the display
+            JOptionPane.showMessageDialog(this, "Library loaded successfully from " + JSON_STORE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error: Unable to read from file: " + JSON_STORE, "Load Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 
