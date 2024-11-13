@@ -77,8 +77,6 @@ public class RemoveBook extends JPanel {
      * Searches for a book by title in the library and displays its details in the result area.
      * If the book is found, prompts the user to confirm its removal.
      * 
-     * @param title the title of the book to search for
-     * 
      * Requires: title is a non-null string.
      * Modifies: library, resultArea, viewBookList
      * Effects: Clears the previous search result, searches for the book in the library, and
@@ -91,40 +89,57 @@ public class RemoveBook extends JPanel {
         resultArea.setText(""); // Clear previous result
         List<Book> books = library.getBooks();
 
-        boolean found = false;
         for (Book book : books) {
             if (book.getTitle().equalsIgnoreCase(title)) {
-                // Display the book details
-                resultArea.append("Title: " + book.getTitle() + "\n");
-                resultArea.append("Author: " + book.getAuthor() + "\n");
-                resultArea.append("Genre: " + book.getGenre() + "\n");
-                resultArea.append("Tag: " + book.getTag() + "\n");
-                resultArea.append("Rating: " + book.getRating() + "\n");
-                resultArea.append("Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading") + "\n\n");
-
-                // Ask for confirmation to remove the book
-                int choice = JOptionPane.showConfirmDialog(
-                        this,
-                        "Are you going to remove this book?",
-                        "Confirm Removal",
-                        JOptionPane.YES_NO_OPTION
-                );
-
-                if (choice == JOptionPane.YES_OPTION) {
-                    library.removeBook(title); // Remove the book from the library
-                    JOptionPane.showMessageDialog(this, "Book removed successfully.");
-                    resultArea.setText(""); // Clear the display after removal
-                    viewBookList.updateBookList(); // Refresh ViewBookList to reflect the deletion
-                } else {
-                    JOptionPane.showMessageDialog(this, "Book not removed.");
-                }
-                found = true;
-                break;
+                displayBookDetails(book);
+                confirmAndRemoveBook(book);
+                return;
             }
         }
 
-        if (!found) {
-            resultArea.append("No book found with the title \"" + title + "\"");
+        resultArea.append("No book found with the title \"" + title + "\"");
+    }
+
+    /**
+     * Displays the details of the given book in the result area.
+     * 
+     * Requires: book is non-null.
+     * Modifies: resultArea
+     * Effects: Shows the details of the book in the result area.
+     */
+    private void displayBookDetails(Book book) {
+        resultArea.append("Title: " + book.getTitle() + "\n");
+        resultArea.append("Author: " + book.getAuthor() + "\n");
+        resultArea.append("Genre: " + book.getGenre() + "\n");
+        resultArea.append("Tag: " + book.getTag() + "\n");
+        resultArea.append("Rating: " + book.getRating() + "\n");
+        resultArea.append("Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading") + "\n\n");
+    }
+
+    /**
+     * Prompts the user to confirm the removal of the book and removes it if confirmed.
+     * 
+     * Requires: book is non-null and exists in the library.
+     * Modifies: library, resultArea, viewBookList
+     * Effects: If the user confirms, removes the book from the library, clears the result area, 
+     *          refreshes ViewBookList, and shows a success message. If not confirmed, shows a
+     *          cancellation message.
+     */
+    private void confirmAndRemoveBook(Book book) {
+        int choice = JOptionPane.showConfirmDialog(
+                this,
+                "Are you going to remove this book?",
+                "Confirm Removal",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (choice == JOptionPane.YES_OPTION) {
+            library.removeBook(book.getTitle()); // Remove the book from the library
+            JOptionPane.showMessageDialog(this, "Book removed successfully.");
+            resultArea.setText(""); // Clear the display after removal
+            viewBookList.updateBookList(); // Refresh ViewBookList to reflect the deletion
+        } else {
+            JOptionPane.showMessageDialog(this, "Book not removed.");
         }
     }
 }

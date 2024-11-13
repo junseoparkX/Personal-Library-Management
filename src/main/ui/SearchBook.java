@@ -85,10 +85,10 @@ public class SearchBook extends JPanel {
 
         boolean found = false;
         for (Book book : books) {
-            if (book.getTitle().equalsIgnoreCase(keyword) ||
-                book.getAuthor().equalsIgnoreCase(keyword) ||
-                book.getGenre().equalsIgnoreCase(keyword) ||
-                book.getTag().equalsIgnoreCase(keyword)) {
+            if (book.getTitle().equalsIgnoreCase(keyword) 
+                    ||  book.getAuthor().equalsIgnoreCase(keyword) 
+                    ||  book.getGenre().equalsIgnoreCase(keyword)
+                    ||  book.getTag().equalsIgnoreCase(keyword)) {
 
                 resultArea.append("Title: " + book.getTitle() + "\n");
                 resultArea.append("Author: " + book.getAuthor() + "\n");

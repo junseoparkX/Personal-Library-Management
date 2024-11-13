@@ -89,40 +89,55 @@ public class UpdateReadingStatus extends JPanel {
         resultArea.setText(""); // Clear previous result
         List<Book> books = library.getBooks();
 
-        boolean found = false;
         for (Book book : books) {
             if (book.getTitle().equalsIgnoreCase(title)) {
-                // Display the book details
-                resultArea.append("Title: " + book.getTitle() + "\n");
-                resultArea.append("Author: " + book.getAuthor() + "\n");
-                resultArea.append("Genre: " + book.getGenre() + "\n");
-                resultArea.append("Tag: " + book.getTag() + "\n");
-                resultArea.append("Rating: " + book.getRating() + "\n");
-                resultArea.append("Current Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading") + "\n\n");
-
-                // Ask for confirmation to toggle the reading status
-                int choice = JOptionPane.showConfirmDialog(
-                        this,
-                        "Would you like to change the reading status?",
-                        "Confirm Status Change",
-                        JOptionPane.YES_NO_OPTION
-                );
-
-                if (choice == JOptionPane.YES_OPTION) {
-                    // Toggle the reading status
-                    book.setReadingStatus(!book.getReadingStatus());
-                    JOptionPane.showMessageDialog(this, "Reading status updated successfully.");
-                    viewBookList.updateBookList(); // Refresh ViewBookList to reflect the update
-                } else {
-                    JOptionPane.showMessageDialog(this, "Reading status not changed.");
-                }
-                found = true;
-                break;
+                displayBookDetailsForToggle(book);
+                confirmAndToggleReadingStatus(book);
+                return;
             }
         }
 
-        if (!found) {
-            resultArea.append("No book found with the title \"" + title + "\"");
+        resultArea.append("No book found with the title \"" + title + "\"");
+    }
+
+    /**
+     * Displays the details of the given book in the result area, including the current reading status.
+     * 
+     * Requires: book is non-null.
+     * Modifies: resultArea
+     * Effects: Shows the details of the book in the result area.
+     */
+    private void displayBookDetailsForToggle(Book book) {
+        resultArea.append("Title: " + book.getTitle() + "\n");
+        resultArea.append("Author: " + book.getAuthor() + "\n");
+        resultArea.append("Genre: " + book.getGenre() + "\n");
+        resultArea.append("Tag: " + book.getTag() + "\n");
+        resultArea.append("Rating: " + book.getRating() + "\n");
+        resultArea.append("Current Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading") + "\n\n");
+    }
+
+    /**
+     * Prompts the user to confirm toggling the reading status and updates it if confirmed.
+     * 
+     * Requires: book is non-null.
+     * Modifies: book, viewBookList
+     * Effects: If the user confirms, toggles the reading status of the book, refreshes ViewBookList,
+     *          and shows a success message. If not confirmed, shows a cancellation message.
+     */
+    private void confirmAndToggleReadingStatus(Book book) {
+        int choice = JOptionPane.showConfirmDialog(
+                this,
+                "Would you like to change the reading status?",
+                "Confirm Status Change",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (choice == JOptionPane.YES_OPTION) {
+            book.setReadingStatus(!book.getReadingStatus()); // Toggle the reading status
+            JOptionPane.showMessageDialog(this, "Reading status updated successfully.");
+            viewBookList.updateBookList(); // Refresh ViewBookList to reflect the update
+        } else {
+            JOptionPane.showMessageDialog(this, "Reading status not changed.");
         }
     }
 }
