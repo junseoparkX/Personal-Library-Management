@@ -27,7 +27,7 @@ public class LibraryAppUI extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    /**
+                /**
      * Constructs a new LibraryAppUI, setting up the main window and loading
      * initial components such as the menu panel and background image.
      * 
@@ -40,18 +40,48 @@ public class LibraryAppUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 600);
 
+        initializeLibraryComponents();
+        loadBackgroundImage();
+        setupMainPanel();
+        
+        setLocationRelativeTo(null); // Center the window
+        setVisible(true);
+    }
+
+    /**
+     * Initializes the library and JSON components.
+     * 
+     * Modifies: this
+     * Effects: Instantiates the Library object and JSON reader/writer for data storage.
+     */
+    private void initializeLibraryComponents() {
         library = new Library();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+    }
 
-        // Load the background image from src/main/image/library.png
+    /**
+     * Loads the background image from the specified path.
+     * 
+     * Modifies: this
+     * Effects: Sets the background image for the main menu. If loading fails, prints the stack trace.
+     */
+    private void loadBackgroundImage() {
         try {
             backgroundImage = ImageIO.read(new File("src/main/image/library.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        // Set up the main panel with CardLayout for switching screens
+    /**
+     * Sets up the main panel with CardLayout and adds all UI panels.
+     * 
+     * Modifies: this
+     * Effects: Configures the main panel with CardLayout, adds the menu panel, 
+     *          and includes other UI components for various functionalities.
+     */
+    private void setupMainPanel() {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
@@ -59,7 +89,19 @@ public class LibraryAppUI extends JFrame {
         JPanel menuPanel = createMenuPanel();
         mainPanel.add(menuPanel, "MenuPanel");
 
-        // Initialize and add various UI panels for different functionalities
+        initializeUIPanels();
+
+        add(mainPanel);
+    }
+
+    /**
+     * Initializes and adds various UI panels for different functionalities.
+     * 
+     * Modifies: this
+     * Effects: Adds multiple panels to the main panel for viewing, adding, removing,
+     *          searching, and updating books in the library.
+     */
+    private void initializeUIPanels() {
         viewBookListPanel = new ViewBookList(library, this);
         mainPanel.add(viewBookListPanel, "ViewBookListUI");
         mainPanel.add(new AddBookUI(library, this, viewBookListPanel), "AddBookUI");
@@ -72,15 +114,10 @@ public class LibraryAppUI extends JFrame {
 
         UpdateReadingStatus updateReadingStatusPanel = new UpdateReadingStatus(library, this, viewBookListPanel);
         mainPanel.add(updateReadingStatusPanel, "UpdateReadingStatus");
-
-        // Add the main panel to the frame
-        add(mainPanel);
-
-        setLocationRelativeTo(null); // Center the window
-        setVisible(true);
     }
 
-    /**
+    
+        /**
      * Creates the main menu panel with buttons for the application actions.
      * Each button is linked to a different action within the application.
      * 
@@ -89,6 +126,23 @@ public class LibraryAppUI extends JFrame {
      * Effects: Returns a JPanel containing the menu layout, including background image and buttons.
      */
     private JPanel createMenuPanel() {
+        JPanel menuPanel = createPanelWithBackgroundAndTitle();
+
+        // Content panel to hold all buttons, positioned at the bottom
+        JPanel contentPanel = createButtonPanel();
+
+        // Anchor the entire content panel at the bottom of the main menu
+        menuPanel.add(contentPanel, BorderLayout.SOUTH);
+
+        return menuPanel;
+    }
+
+    /**
+     * Creates the main panel with background and title.
+     * 
+     * Effects: Returns a JPanel with the specified background image and title.
+     */
+    private JPanel createPanelWithBackgroundAndTitle() {
         JPanel menuPanel = new JPanel(new BorderLayout()) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -99,24 +153,51 @@ public class LibraryAppUI extends JFrame {
             }
         };
 
-        // Title at the top of the menu panel
         JLabel titleLabel = new JLabel("PersonalLibraryApp", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         menuPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Content panel to hold all buttons, positioned at the bottom
+        return menuPanel;
+    }
+
+        /**
+     * Creates the button panel with all menu options.
+     * 
+     * Modifies: this
+     * Effects: Returns a JPanel containing buttons for all main menu options.
+     */
+    private JPanel createButtonPanel() {
         JPanel contentPanel = new JPanel(new GridLayout(3, 1, 10, 10));
         contentPanel.setOpaque(false);
 
-        // Wide buttons panel with "View Book List" and "Trending Books" stacked vertically
+        // Add the wide buttons and bottom buttons to the content panel
+        contentPanel.add(createWideButtonsPanel());
+        contentPanel.add(createBottomButtonPanel());
+
+        return contentPanel;
+    }
+
+    /**
+     * Creates the wide buttons panel with "View Book List" and "Trending Books".
+     * 
+     * Effects: Returns a JPanel containing the wide buttons.
+     */
+    private JPanel createWideButtonsPanel() {
         JPanel wideButtonsPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         wideButtonsPanel.setOpaque(false);
         wideButtonsPanel.add(createButton("View Book List", "ViewBookListUI"));
         wideButtonsPanel.add(createButton("Trending Books", "TrendingBooksUI"));
-        contentPanel.add(wideButtonsPanel);
+        return wideButtonsPanel;
+    }
 
-        // Bottom section with six smaller buttons in a 2x3 grid
+    /**
+     * Creates the bottom button panel with additional options and actions.
+     * 
+     * Modifies: this
+     * Effects: Returns a JPanel containing the bottom buttons for the application.
+     */
+    private JPanel createBottomButtonPanel() {
         JPanel bottomButtonPanel = new JPanel(new GridLayout(2, 3, 10, 10));
         bottomButtonPanel.setOpaque(false);
 
@@ -125,7 +206,6 @@ public class LibraryAppUI extends JFrame {
         bottomButtonPanel.add(createButton("Update Reading Status", "UpdateReadingStatus"));
         bottomButtonPanel.add(createButton("Search Books", "SearchBook"));
 
-        // Buttons for saving and loading the library
         JButton loadButton = new JButton("Load Library");
         loadButton.addActionListener(e -> loadLibrary());
         bottomButtonPanel.add(loadButton);
@@ -134,13 +214,7 @@ public class LibraryAppUI extends JFrame {
         saveButton.addActionListener(e -> saveLibrary());
         bottomButtonPanel.add(saveButton);
 
-        // Add bottom button panel below the wide buttons
-        contentPanel.add(bottomButtonPanel);
-
-        // Anchor the entire content panel at the bottom of the main menu
-        menuPanel.add(contentPanel, BorderLayout.SOUTH);
-
-        return menuPanel;
+        return bottomButtonPanel;
     }
 
     /**
@@ -172,7 +246,8 @@ public class LibraryAppUI extends JFrame {
             jsonWriter.close();
             JOptionPane.showMessageDialog(this, "Library saved successfully to " + JSON_STORE);
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(this, "Error: Unable to write to file: " + JSON_STORE, "Save Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error: Unable to write to file: " + JSON_STORE, 
+                                                "Save Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -193,10 +268,10 @@ public class LibraryAppUI extends JFrame {
             viewBookListPanel.updateBookList(); // Refresh the display
             JOptionPane.showMessageDialog(this, "Library loaded successfully from " + JSON_STORE);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error: Unable to read from file: " + JSON_STORE, "Load Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error: Unable to read from file: " + JSON_STORE,
+                                             "Load Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 
     /**
      * Method to switch panels in the main window.
