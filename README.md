@@ -26,6 +26,23 @@ This project interests me because through the opportunity for making a personal 
 - Track Reading Progress: Update the reading status of each book.
 - Remove a book from user's library: Remove books that user mistakely added or want to exclude from their wishlist.  
 
+# Instructions for End User
+
+- **You can generate the first required action related to the user story "adding multiple Books to a Library" by** clicking the **"Add Book"** button in the main menu, entering the book’s details (title, author, genre, tag, and rating) in the **Add New Book** panel, and clicking **"Save"** to add it to the library.
+
+- **You can generate the second required action related to the user story "adding multiple Books to a Library" by** clicking the **"View Book List"** button in the main menu to display a list of all books currently in the library, including details such as title, author, genre, tag, rating, and reading status.
+
+- **You can update the reading status of a book by** clicking the **"Update Reading Status"** button in the main menu, entering the title of the book in the search bar, pressing **Enter**, and confirming the prompt to toggle the reading status between "Reading" and "Not Reading".
+
+- **You can search for a book in the library by** clicking the **"Search Books"** button in the main menu, entering a search term (title, author, genre, or tag) in the search bar, and pressing **Enter** to display matching books in the search results panel.
+
+- **You can remove a book from the library by** clicking the **"Remove Book"** button in the main menu, entering the title of the book in the search bar, pressing **Enter**, and selecting **Yes** in the prompt to confirm removal of the book from the library.
+
+- **You can locate my visual component by** navigating to the **"Trending Books"** section from the main menu by clicking the **"Trending Books"** button, which displays images of popular book covers alongside descriptions of each book.
+
+- **You can save the state of my application by** clicking the **"Save Library"** button in the main menu, which saves the current library data to a JSON file to preserve all added books.
+
+- **You can reload the state of my application by** clicking the **"Load Library"** button in the main menu to load the saved data from the JSON file and update the library with previously saved books.
 
 
 ## User Stories
@@ -39,3 +56,5 @@ This project interests me because through the opportunity for making a personal 
 - As a user, I want to be able to remove books from the library. 
 - As a user, I want to have the option to save my personal library to a file so that I can preserve my data for future use.
 - As a user, I want to have the option to load my personal library from a file so that I can resume my work from where I left off.
+
+
