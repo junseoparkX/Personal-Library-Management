@@ -114,6 +114,10 @@ public class LibraryAppUI extends JFrame {
 
         UpdateReadingStatus updateReadingStatusPanel = new UpdateReadingStatus(library, this, viewBookListPanel);
         mainPanel.add(updateReadingStatusPanel, "UpdateReadingStatus");
+
+        // Inside LibraryAppUI constructor or setup method
+        TrendingBooks trendingBooksPanel = new TrendingBooks(this);
+        mainPanel.add(trendingBooksPanel, "TrendingBooksUI");
     }
 
     

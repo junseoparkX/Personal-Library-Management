@@ -5,7 +5,7 @@
         "genre": "Adventure",
         "rating": 4.8,
         "tag": "Trending",
-        "title": "Harry Potter"
+        "title": "Harry Potter and the Philosopher's Stone"
     },
     {
         "readingStatus": false,
@@ -13,7 +13,7 @@
         "genre": "Dystopian",
         "rating": 4.2,
         "tag": "Adventure",
-        "title": "Maze Runner"
+        "title":   "The Maze Runner: Book One of the Maze Runner Series"
     },
     {
         "readingStatus": false,
