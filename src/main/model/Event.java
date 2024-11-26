@@ -15,7 +15,7 @@ public class Event {
      * Creates an event with the given description and a timestamp.
      * @param description the description of the event
      */
-        public Event(String description) {
+    public Event(String description) {
         dateLogged = Calendar.getInstance().getTime();
         this.description = description;
     }
@@ -47,8 +47,8 @@ public class Event {
             return false;
         }
         Event otherEvent = (Event) other;
-        return this.dateLogged.equals(otherEvent.dateLogged) &&
-               this.description.equals(otherEvent.description);
+        return this.dateLogged.equals(otherEvent.dateLogged) 
+            &&  this.description.equals(otherEvent.description);
     }
 
     /**

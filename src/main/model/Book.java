@@ -63,7 +63,8 @@ public class Book {
         if (readingStatus) {
             statusMessage = "Reading";
         }
-        EventLog.getInstance().logEvent(new Event("Updated reading status for book: " + title + " to " + statusMessage));
+        EventLog.getInstance().logEvent(new Event("Updated reading status for book: " 
+                        + title + " to " + statusMessage));
         this.readingStatus = readingStatus; 
     }
 
