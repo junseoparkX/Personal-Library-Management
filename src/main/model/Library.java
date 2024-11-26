@@ -52,6 +52,7 @@ public class Library {
                 bookList.add(book);
             }
         }
+        EventLog.getInstance().logEvent(new Event("Searched for books with keyword: " + keyword));
         return bookList; 
     }
 
