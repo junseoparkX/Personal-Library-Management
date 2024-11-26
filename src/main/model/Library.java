@@ -33,9 +33,11 @@ public class Library {
             Book book = books.get(i);
             if (book.getTitle().equals(title)) {
                 books.remove(i);
+                EventLog.getInstance().logEvent(new Event("Removed book: " + title));
                 return true; 
             }
         }
+        EventLog.getInstance().logEvent(new Event("Attempted to remove book: " + title + " but it was not found"));
         return false; 
     }
 
