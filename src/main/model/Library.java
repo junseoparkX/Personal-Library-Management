@@ -23,6 +23,7 @@ public class Library {
     // MODIFIES: this
     // EFFECTS: adds a book to the library
     public void addBook(Book book) {
+        EventLog.getInstance().logEvent(new Event("Added book: " + book.getTitle() + " by " + book.getAuthor()));
         books.add(book);
     }
 
