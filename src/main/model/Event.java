@@ -7,12 +7,17 @@ import java.util.Date;
  * Represents an event with a timestamp and description.
  */
 public class Event {
-    private static final int HASH_CONSTANT = 13;
-    private Date dateLogged;
-    private String description;
+    private static final int HASH_CONSTANT = 13; // Constant for generating hash codes
+    private Date dateLogged; // The date and time when the event was logged
+    private String description; // A brief description of the event
 
     /**
      * Creates an event with the given description and a timestamp.
+     * 
+     * Modifies: this
+     * Effects: Initializes the event with the given description and sets the
+     *          timestamp to the current date and time.
+     *
      * @param description the description of the event
      */
     public Event(String description) {
@@ -22,6 +27,7 @@ public class Event {
 
     /**
      * Returns the date and time of the event.
+     *
      * @return the date of the event
      */
     public Date getDate() {
@@ -30,6 +36,7 @@ public class Event {
 
     /**
      * Returns the description of the event.
+     *
      * @return the event description
      */
     public String getDescription() {
@@ -38,6 +45,10 @@ public class Event {
 
     /**
      * Checks equality between this event and another object.
+     * 
+     * Effects: Returns true if the given object is an Event and has the same
+     *          dateLogged and description as this event; false otherwise.
+     *
      * @param other the object to compare with
      * @return true if both events have the same date and description, false otherwise
      */
@@ -48,11 +59,12 @@ public class Event {
         }
         Event otherEvent = (Event) other;
         return this.dateLogged.equals(otherEvent.dateLogged) 
-            &&  this.description.equals(otherEvent.description);
+            && this.description.equals(otherEvent.description);
     }
 
     /**
      * Generates a hash code for the event based on its fields.
+     *
      * @return the hash code for this event
      */
     @Override
@@ -62,11 +74,11 @@ public class Event {
 
     /**
      * Converts the event to a string representation.
+     *
      * @return a string containing the event's date and description
      */
     @Override
     public String toString() {
         return dateLogged.toString() + "\n" + description;
     }
-    
 }
