@@ -59,6 +59,11 @@ public class Book {
     }
 
     public void setReadingStatus(boolean readingStatus) { 
+        String statusMessage = "Not Reading";
+        if (readingStatus) {
+            statusMessage = "Reading";
+        }
+        EventLog.getInstance().logEvent(new Event("Updated reading status for book: " + title + " to " + statusMessage));
         this.readingStatus = readingStatus; 
     }
 
