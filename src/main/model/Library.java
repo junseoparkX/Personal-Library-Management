@@ -67,7 +67,6 @@ public class Library {
     
         if (books.isEmpty()) {
             output.add("There are no books in the library");
-            EventLog.getInstance().logEvent(new Event("Displayed library: no books available"));
         } else {
             output.add("Books in the library:");
             for (Book book : books) {

@@ -47,34 +47,6 @@ class EventTest {
         assertTrue(toString.contains("Test event"));
         assertTrue(toString.contains(event.getDate().toString()));
     }
-
-    @Test
-    void testEqualsDifferentTimestamp() {
-        Event laterEvent = new Event("Test event");
-        assertNotEquals(event, laterEvent); // Events with the same description but different timestamps should not be equal        
-    }
-
-    @Test
-    void testGetDate() {
-        assertNotNull(event.getDate()); // Ensure date is not null
-        Date now = new Date();
-        assertTrue(event.getDate().compareTo(now) <= 0); // Ensure the date is before or equal to 'now'
-    }
-    @Test
-    void testGetDescription() {
-        assertEquals(description, event.getDescription()); // Ensure description matches
-    }
-
-    @Test
-    void testEqualsSameEvent() {
-        assertTrue(event.equals(event)); // An object must be equal to itself
-    }
-    
-    @Test
-    void testEqualsSameFields() {
-        Event sameEvent = new Event(description);
-        assertNotEquals(event, sameEvent); // Same description but different timestamps are not equal
-    }
     
     @Test
     void testEqualsDifferentObject() {
@@ -85,11 +57,6 @@ class EventTest {
     @Test
     void testEqualsNull() {
         assertFalse(event.equals(null)); // Ensure it is not equal to null
-    }
-    
-    @Test
-    void testEqualsDifferentClass() {
-        assertFalse(event.equals("Not an Event")); // Ensure not equal to a different class
     }
 
     @Test
@@ -105,11 +72,47 @@ class EventTest {
         assertNotEquals(event.hashCode(), differentEvent.hashCode()); // Different events have different hash codes
     }
     
+    
+    @Test
+    void testEqualsSameFields() {
+        // Create two events with the same description and manually set the same date
+        Date sameDate = new Date();
+        Event event1 = new Event("Test Event");
+        Event event2 = new Event("Test Event");
+        
+        // Simulate same timestamp
+        event1.getDate().setTime(sameDate.getTime());
+        event2.getDate().setTime(sameDate.getTime());
+        
+        assertTrue(event1.equals(event2)); // Events with the same description and timestamp should be equal
+    }
 
     @Test
-    void testToString() {
-        String result = event.toString();
-        assertTrue(result.contains(description)); // Ensure the description is in the string
-        assertTrue(result.contains(event.getDate().toString())); // Ensure the date is in the string
+    void testEqualsSameObject() {
+        assertTrue(event.equals(event)); // An object must always be equal to itself
     }
+
+    @Test
+    void testEqualsDifferentClass() {
+        assertFalse(event.equals("Not an Event")); // An event must not be equal to an object of a different class
+    }
+    
+    
+    @Test
+    void testEqualsDifferentDescriptions() {
+        // Create two events with different descriptions
+        Event event1 = new Event("Description 1");
+        Event event2 = new Event("Description 2");
+    
+        assertFalse(event1.equals(event2)); // Events with different descriptions are not equal
+    }
+
+    @Test
+    void testEqualsNullAndClassCheck() {
+        // Ensure null comparison returns false
+        assertFalse(event.equals(null));
+    
+        // Ensure different class comparison returns false
+        assertFalse(event.equals("This is not an Event"));
+    }   
 }

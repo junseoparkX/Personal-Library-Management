@@ -68,4 +68,5 @@ public class Event {
     public String toString() {
         return dateLogged.toString() + "\n" + description;
     }
+    
 }

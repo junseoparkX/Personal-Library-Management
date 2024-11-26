@@ -80,5 +80,4 @@ public class UserTest {
         assertEquals("1234", user.getPassword());
     }
 
-
 }
