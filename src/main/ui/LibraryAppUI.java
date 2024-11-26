@@ -1,12 +1,16 @@
 package ui;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import model.Event;
+import model.EventLog;
 import model.Library;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -43,6 +47,16 @@ public class LibraryAppUI extends JFrame {
         initializeLibraryComponents();
         loadBackgroundImage();
         setupMainPanel();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("Event Log:");
+                for (Event event : EventLog.getInstance()) { // Accessing EventLog Singleton
+                    System.out.println(event.toString());
+                }
+            }
+        });
         
         setLocationRelativeTo(null); // Center the window
         setVisible(true);
