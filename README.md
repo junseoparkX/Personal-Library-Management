@@ -97,4 +97,9 @@ The following action in the `Book` class triggers event logging:
 When the application exits, all logged events are printed to the console to provide a summary of key operations performed during the session.
 
 
+### Phase 4: Task 3
+
+Reflecting on the design presented in the UML class diagram, there are several ways the Library Management System could be improved. One important area is separating concerns within the `Library` class. Currently, it manages multiple responsibilities, such as adding/removing books, searching, displaying information, and logging events, which violates the Single Responsibility Principle. Refactoring this class by introducing helper classes, such as a `LibraryManager` for book operations and a `DisplayService` for formatting and displaying book details, would make the design cleaner and more focused. This separation would also make each component easier to test and maintain independently.
+
+Another area for improvement is reducing the direct interaction between the UI and model classes. Currently, UI components like `LibraryAppUI` directly manipulate instances of `Library` and `Book`, creating tight coupling and making future modifications or testing more challenging. Adding a `Controller` layer, such as a `LibraryController`, would manage tasks like adding or removing books, searching, and updating reading statuses. It would act as a middle layer and ensures that the UI does not directly manipulate the `Library` or `Book` classes. Moreover , the `Book` class could be extended by introducing specific subclasses, such as `FictionBook` and `NonFictionBook`, to better represent different types of books while keeping shared fields and methods in the parent `Book` class. These changes would improve the overall structure of the system, making it more adaptable and robust for future updates.
 
