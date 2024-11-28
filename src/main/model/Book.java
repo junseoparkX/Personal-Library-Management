@@ -1,6 +1,9 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import persistence.Writable;
 
 /**
  * Represents a book with attributes such as title, author, genre, tag, and rating.
@@ -8,7 +11,7 @@ import org.json.JSONObject;
  * "Reading" or "Not reading". Provides methods for accessing and updating these 
  * attributes and for converting the book's information into JSON format.
  */
-public class Book {  
+public class Book implements Writable {  
     private String title;
     private String genre; 
     private String tag; 

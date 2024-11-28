@@ -3,6 +3,8 @@ package model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  * Additionally, it supports converting the library's book collection to a JSON format.
  * Each book in the library is represented by the Book class.
  */
-public class Library {
+public class Library implements Writable {
     private ArrayList<Book> books; 
 
     // EFFECTS: initializes the books list

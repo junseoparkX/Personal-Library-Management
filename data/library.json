@@ -13,7 +13,7 @@
         "genre": "Dystopian",
         "rating": 4.2,
         "tag": "Adventure",
-        "title":   "The Maze Runner: Book One of the Maze Runner Series"
+        "title": "The Maze Runner: Book One of the Maze Runner Series"
     },
     {
         "readingStatus": false,
@@ -38,13 +38,5 @@
         "rating": 4.8,
         "tag": "Classic",
         "title": "To Kill a Mockingbird"
-    },
-    {
-        "readingStatus": false,
-        "author": "4",
-        "genre": "2",
-        "rating": 1,
-        "tag": "1",
-        "title": "3"
     }
 ]}
