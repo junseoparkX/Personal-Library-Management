@@ -1,5 +1,7 @@
 package model;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 /**
  * Represents a user with a username, password, and a counter for login attempts.
  * Provides methods to validate the username and password length, track and reset login attempts,
@@ -69,4 +71,29 @@ public class User {
             return false;  // Password change failed
         }
     }
+
+    /**
+     * Hashes a plain-text password using BCrypt.
+     * 
+     * @param plainPassword the user’s raw password input
+     * @return a BCrypt-hashed version of the password
+     */
+    public static String hashPassword(String plainPassword) {
+        // The work factor (log rounds) is set to 12: higher values increase security at the cost of performance
+        return BCrypt.hashpw(plainPassword, BCrypt.gensalt(12));
+    }
+
+    /**
+     * Verifies a plain-text password against a stored BCrypt hash.
+     * 
+     * the user’s raw password input
+     * the stored BCrypt hash to check against
+     * true if the password matches the hash, false otherwise
+     */
+
+    public static boolean checkPassword(String plainPassword, String hashed) {
+        return BCrypt.checkpw(plainPassword, hashed);
+    }
 }
+
+

@@ -96,6 +96,7 @@ public class SearchBook extends JPanel {
                 resultArea.append("Tag: " + book.getTag() + "\n");
                 resultArea.append("Rating: " + book.getRating() + "\n");
                 resultArea.append("Reading Status: " + (book.getReadingStatus() ? "Reading" : "Not Reading") + "\n");
+                
                 resultArea.append("\n------------------------------------\n");
                 found = true;
             }
